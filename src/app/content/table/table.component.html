@@ -1,1 +1,29 @@
-<p>table works!</p>
+<h1>NIMEKIRI</h1>
+  <p *ngIf="this.loendiStat">{{this.loendiStat.total}}</p>
+<table>
+  <thead>
+  <tr>
+    <th id="firstname">Eesnimi</th>
+    <th id="surname">Perekonnanimi</th>
+    <th id="sex">Sugu</th>
+    <th id="date">Sünnipäev</th>
+    <th id="phone">Telefon</th>
+  </tr>
+  </thead>
+  <tfoot>
+  <tr>
+    <td colspan="5">
+        <span *ngFor="let o of this.offsets">{{o.page}}</span>
+    </td>
+  </tr>
+  </tfoot>
+  <tbody>
+  <tr *ngFor="let d of this.inimesteLoend">
+    <td>{{d.firstname}}</td>
+    <td>{{d.surname}}</td>
+    <td>{{d.sex}}</td>
+    <td>{{d.personal_code}}</td>
+    <td>{{d.phone}}</td>
+  </tr>
+  </tbody>
+</table>
