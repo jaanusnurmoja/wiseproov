@@ -22,3 +22,11 @@ span, button {
   white-space: nowrap;
   padding: 0 10px;
 }
+img.intro {
+margin-right: 10px;
+float: left;
+width: 30%;
+}
+.intro-hide {
+  display: none;
+}

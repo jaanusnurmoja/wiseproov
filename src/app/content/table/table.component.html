@@ -18,12 +18,20 @@
   </tr>
   </tfoot>
   <tbody>
-  <tr *ngFor="let d of this.inimesteLoend">
+  <ng-container *ngFor="let d of this.inimesteLoend">
+  <tr id="{{d.id}}">
     <td class="name firstname">{{d.firstname}}</td>
     <td class="name surname">{{d.surname}}</td>
     <td class="sex">{{d.sex}}</td>
     <td class="date">{{d.personal_code}}</td>
     <td class="phone">{{d.phone}}</td>
   </tr>
+  <tr id="{{d.id}}_intro" class="intro-hide">
+    <td colspan="5">
+      <img class="intro" src="{{d.image.small}}">
+      {{d.intro}}
+    </td>
+  </tr>
+  </ng-container>
   </tbody>
 </table>
