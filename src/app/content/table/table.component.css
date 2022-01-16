@@ -1,17 +1,24 @@
 table {
-  max-width:600px;
+  max-width:720px;
 }
 table,tr,th,td, span {
   border: 1px solid black;
 }
-td, th {
+td, th .name{
 padding: 6px;
+width:24%;
+}
+.sex {
+  width:12%;
+}
+.date, .phone {
+width:20%;
 }
 tfoot tr td {
   white-space: normal; /* css-3 */
   overflow-wrap: anywhere;
 }
-span {
+span, button {
   white-space: nowrap;
   padding: 0 10px;
 }
