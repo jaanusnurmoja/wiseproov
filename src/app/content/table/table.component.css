@@ -1,0 +1,17 @@
+table {
+  max-width:600px;
+}
+table,tr,th,td, span {
+  border: 1px solid black;
+}
+td, th {
+padding: 6px;
+}
+tfoot tr td {
+  white-space: normal; /* css-3 */
+  overflow-wrap: anywhere;
+}
+span {
+  white-space: nowrap;
+  padding: 0 10px;
+}
