@@ -13,17 +13,17 @@
   <tfoot>
   <tr>
     <td colspan="5">
-        <span *ngFor="let o of this.offsets">{{o.page}}</span>
+        <button *ngFor="let o of this.offsets" (click)="loendJaStatOrig(o.value)">{{o.page}}</button>
     </td>
   </tr>
   </tfoot>
   <tbody>
   <tr *ngFor="let d of this.inimesteLoend">
-    <td>{{d.firstname}}</td>
-    <td>{{d.surname}}</td>
-    <td>{{d.sex}}</td>
-    <td>{{d.personal_code}}</td>
-    <td>{{d.phone}}</td>
+    <td class="name firstname">{{d.firstname}}</td>
+    <td class="name surname">{{d.surname}}</td>
+    <td class="sex">{{d.sex}}</td>
+    <td class="date">{{d.personal_code}}</td>
+    <td class="phone">{{d.phone}}</td>
   </tr>
   </tbody>
 </table>
