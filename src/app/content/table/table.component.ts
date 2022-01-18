@@ -10,6 +10,7 @@ export class TableComponent implements OnInit {
   loendiStat: any;
   inimesteLoend: any;
   offsets: any;
+  isActive: any = false;
 
   constructor() { }
 
@@ -19,8 +20,8 @@ export class TableComponent implements OnInit {
     //this.inimesed();
   }
 
-  loendJaStatOrig(os = 0): void {
-    fetch('https://midaiganes.irw.ee/api/list?offset='+os)
+  loendJaStatOrig(param = ''): void {
+    fetch('https://midaiganes.irw.ee/api/list' + param)
     .then(response => response.json())
     .then(j => this.loendJaStatParsed(j));
   }
@@ -40,7 +41,17 @@ loendJaStatParsed(j): void {
   console.log(this.loendiStat);
   console.log(this.offsets);
   }
+
+ activeTr(id):void {
+  this.isActive = this.isActive == id ? false : id;
+ }
 /*
+ showIntroToggle(id):void {
+  id = !id;
+  this.showIntro = id;
+ }
+ */
+  /*
   inimesed(sortparams=[]): void {
     let inimesed = this.loendJaStat.list;
     let field = '';
