@@ -11,6 +11,7 @@ export class TableComponent implements OnInit {
   inimesteLoend: any;
   offsets: any;
   isActive: any = false;
+  synna:string = '';
 
   constructor() { }
 
@@ -29,6 +30,13 @@ export class TableComponent implements OnInit {
 loendJaStatParsed(j): void {
   let loendiStat = j.stats;
   let inimesteLoend = j.list;
+  for (let inimene of inimesteLoend) {
+    let sugu:string = '';
+    sugu = inimene.sex == 'm' ? 'Mees' : 'Naine';
+    inimene.sex = sugu;
+    this.personalIdToFormattedDate(inimene.personal_code);
+    inimene.synna = this.synna;
+  }
     this.loendiStat = loendiStat;
     this.inimesteLoend = inimesteLoend;
   let pages = loendiStat.total / loendiStat.limit;
@@ -44,6 +52,16 @@ loendJaStatParsed(j): void {
 
  activeTr(id):void {
   this.isActive = this.isActive == id ? false : id;
+ }
+
+ personalIdToFormattedDate(personalId):void {
+  let idAsString = String(personalId);
+  let sajandiArv = ['5','6'].includes(idAsString[0]) ? '20' : '19';
+  let aasta = sajandiArv + idAsString.substring(1,3);void
+  console.log(idAsString);
+  let kuu = idAsString.substring(3,5);
+  let paev = idAsString.substring(5,7);
+  this.synna = paev + '.' + kuu + '.' + aasta;
  }
 /*
  showIntroToggle(id):void {
