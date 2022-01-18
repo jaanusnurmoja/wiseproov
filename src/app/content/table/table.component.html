@@ -3,11 +3,11 @@
 <table>
   <thead>
   <tr>
-    <th id="firstname">Eesnimi</th>
-    <th id="surname">Perekonnanimi</th>
-    <th id="sex">Sugu</th>
-    <th id="date">Sünnipäev</th>
-    <th id="phone">Telefon</th>
+    <th #th role="button" class="clickable" id="firstname">Eesnimi <ngx-fa name="sort" size="lg"></ngx-fa></th>
+    <th #th role="button" class="clickable" id="surname">Perekonnanimi <ngx-fa name="sort" size="lg"></ngx-fa></th>
+    <th #th role="button" class="clickable" id="sex">Sugu <ngx-fa name="sort" size="lg"></ngx-fa></th>
+    <th #th role="button" class="clickable" id="date">Sünnipäev <ngx-fa name="sort" size="lg"></ngx-fa></th>
+    <th #th role="button" class="clickable" id="phone">Telefon</th>
   </tr>
   </thead>
   <tfoot>
@@ -23,7 +23,7 @@
     <td class="name firstname">{{d.firstname}}</td>
     <td class="name surname">{{d.surname}}</td>
     <td class="sex">{{d.sex}}</td>
-    <td class="date">{{d.personal_code}}</td>
+    <td class="date">{{d.synna}}</td>
     <td class="phone">{{d.phone}}</td>
   </tr>
     <ng-container *ngIf="this.isActive===d.id">

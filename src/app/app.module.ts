@@ -9,6 +9,8 @@ import { TableComponent } from './content/table/table.component';
 import { ArticleComponent } from './content/article/article.component';
 import { HomeComponent } from './home/home.component';
 import { ContentComponent } from './content/content.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgxFontAwesomeModule } from 'ngx-font-awesome';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { ContentComponent } from './content/content.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    NgxFontAwesomeModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
