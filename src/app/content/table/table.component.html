@@ -13,25 +13,30 @@
   <tfoot>
   <tr>
     <td colspan="5">
-        <button *ngFor="let o of this.offsets" (click)="loendJaStatOrig(o.value)">{{o.page}}</button>
+        <button *ngFor="let o of this.offsets" (click)="loendJaStatOrig('?offset='+o.value)">{{o.page}}</button>
     </td>
   </tr>
   </tfoot>
   <tbody>
   <ng-container *ngFor="let d of this.inimesteLoend">
-  <tr id="{{d.id}}">
+  <tr #tr role="button" class="clickable" (click)="tr.classList.toggle('active'); activeTr(d.id)">
     <td class="name firstname">{{d.firstname}}</td>
     <td class="name surname">{{d.surname}}</td>
     <td class="sex">{{d.sex}}</td>
     <td class="date">{{d.personal_code}}</td>
     <td class="phone">{{d.phone}}</td>
   </tr>
-  <tr id="{{d.id}}_intro" class="intro-hide">
+    <ng-container *ngIf="this.isActive===d.id">
+  <tr id="{{d.id}}_intro">
     <td colspan="5">
       <img class="intro" src="{{d.image.small}}">
       {{d.intro}}
+      <p>
+        <a href="/article/{{d.id}}" (click)="loendJaStatOrig('/' + d.id)">Loe edasi</a>
+      </p>
     </td>
   </tr>
+  </ng-container>
   </ng-container>
   </tbody>
 </table>
