@@ -78,18 +78,41 @@ export class TableComponent implements OnInit {
     this.sortableField = field;
   }
 
+  sortCompare(prop1, prop2, asc, desc): number {
+    if (asc == true) {
+      return prop1 < prop2 ? -1 : 1;
+    }
+    if (desc == true) {
+      return prop2 < prop1 ? -1 : 1;
+    }
+    return 0;
+  }
+
    setSortToggleName(sortableField, toggleName): void {
       let sortNames:any = {};
+      let sortedData:any[] = [];
+      let asc:boolean = false;
+      let desc:boolean = false;
+      let none:boolean = true;
       let sn:string = 'sort';
+      const unsorted = this.inimesteLoend;
       if (toggleName =='') sn = 'sort';
       if (toggleName =='sort') sn = 'sort-up';
       if (toggleName == 'sort-up') sn = 'sort-down';
       if (toggleName == 'sort-down') sn = 'sort';
+      asc = sn == 'sort-up' ? true : false;
+      desc = sn == 'sort-down' ? true : false;
+      none = sn == 'sort' ? true : false;
       if (sortableField == 'default') sortNames.default = 'sort';
-      if (sortableField == 'firstname') sortNames.firstname = sn;
-      if (sortableField == 'surname') sortNames.surname = sn;
-      if (sortableField == 'sex') sortNames.sex = sn;
-      if (sortableField == 'birthdate') sortNames.personal_code = sn;
+      if (sortableField == 'firstname'){
+        sortNames.firstname = sn;
+      }
+      if (sortableField == 'surname') {
+        sortNames.surname = sn;
+        sortedData = this.inimesteLoend.sort((a, b) => (this.sortCompare(a.surname, b.surname, asc, desc)));
+      }
+      if (sortableField == 'sex') {sortNames.sex = sn;}
+      if (sortableField == 'birthdate') {sortNames.personal_code = sn;}
       if (sortableField == '') {
           sortNames.default = 'sort';
           sortNames.firstname = 'sort';
@@ -99,8 +122,14 @@ export class TableComponent implements OnInit {
       }
 
       this.sortToggleName = sortNames;
+      this.inimesteLoend = sortedData;
+      if (none) this.reset();
       console.log(this.sortToggleName);
       //this.sortToggleName(toggleName);
+   }
+
+   reset(): any {
+    this.loendJaStatOrig('?offset=' + this.loendiStat.offset);
    }
 
   /*
@@ -125,10 +154,10 @@ export class TableComponent implements OnInit {
 function sortData(prop, asc) {
     return function (a, b) {
         if (asc == true) {
-            return a[prop] - b[prop];
+            return a.prop - b.prop;
         }
         else {
-            return b[prop] - a[prop];
+            return b.prop - a.prop;
         }
     }
 }
