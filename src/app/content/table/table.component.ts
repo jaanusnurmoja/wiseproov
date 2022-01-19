@@ -9,6 +9,7 @@ export class TableComponent implements OnInit {
 
   loendiStat: any;
   inimesteLoend: any;
+  fullList: any;
   offsets: any;
   isActive: any = false;
   synna:string = '';
@@ -19,6 +20,7 @@ export class TableComponent implements OnInit {
 
   ngOnInit(): void {
     this.loendJaStatOrig();
+    this.loendJaStatFullQuery();
     this.setSortableFieldNames();
     this.setSortToggleName('default','sort');
     //this.loendJaStatParsed();
@@ -33,6 +35,9 @@ export class TableComponent implements OnInit {
 
   loendJaStatParsed(j): void {
     let loendiStat = j.stats;
+    if (loendiStat.results == loendiStat.total) {
+      this.loendTaiesPikkuses(j.list);
+    }
     let inimesteLoend = j.list;
     for (let inimene of inimesteLoend) {
       let sugu:string = '';
@@ -49,9 +54,18 @@ export class TableComponent implements OnInit {
         offsets[i] = {"page": i+1, "value": i * loendiStat.limit};
       }
     this.offsets = offsets;
+
     console.log(this.inimesteLoend);
     console.log(this.loendiStat);
     console.log(this.offsets);
+  }
+
+  loendJaStatFullQuery(): void {
+     this.loendJaStatOrig('?limit=' + this.loendiStat.total);
+  }
+
+  loendTaiesPikkuses(list): void {
+    this.fullList = list;
   }
 
   activeTr(id):void {
@@ -128,7 +142,7 @@ export class TableComponent implements OnInit {
       //this.sortToggleName(toggleName);
    }
 
-   reset(): any {
+   reset(): void {
     this.loendJaStatOrig('?offset=' + this.loendiStat.offset);
    }
 
