@@ -12,11 +12,14 @@ export class TableComponent implements OnInit {
   offsets: any;
   isActive: any = false;
   synna:string = '';
+  sortableField: any;
+  sortToggleName: any;
 
   constructor() { }
 
   ngOnInit(): void {
     this.loendJaStatOrig();
+    this.setSortableFieldNames();
     //this.loendJaStatParsed();
     //this.inimesed();
   }
@@ -35,6 +38,8 @@ loendJaStatParsed(j): void {
     sugu = inimene.sex == 'm' ? 'Mees' : 'Naine';
     inimene.sex = sugu;
     this.personalIdToFormattedDate(inimene.personal_code);
+    this.setSortToggleName('default','sort');
+
     inimene.synna = this.synna;
   }
     this.loendiStat = loendiStat;
@@ -63,12 +68,42 @@ loendJaStatParsed(j): void {
   let paev = idAsString.substring(5,7);
   this.synna = paev + '.' + kuu + '.' + aasta;
  }
-/*
- showIntroToggle(id):void {
-  id = !id;
-  this.showIntro = id;
+
+ setSortableFieldNames(): void {
+   const field:any = {};
+    field.firstname = 'firstname';
+    field.surname = 'surname';
+    field.sex = 'sex';
+    field.birthdate = 'birthdate';
+    field.personal_code = 'personal_code';
+    this.sortableField = field;
  }
- */
+
+ setSortToggleName(sortableField, toggleName): void {
+      let sortNames:any = {};
+      let sn:string = 'sort';
+      if (toggleName =='') sn = 'sort';
+      if (toggleName =='sort') sn = 'sort-up';
+      if (toggleName == 'sort-up') sn = 'sort-down';
+      if (toggleName == 'sort-down') sn = 'sort';
+      if (sortableField == 'default') sortNames.default = 'sort';
+      if (sortableField == 'firstname') sortNames.firstname = sn;
+      if (sortableField == 'surname') sortNames.surname = sn;
+      if (sortableField == 'sex') sortNames.sex = sn;
+      if (sortableField == 'birthdate') sortNames.personal_code = sn;
+      if (sortableField == '') {
+          sortNames.default = 'sort';
+          sortNames.firstname = 'sort';
+          sortNames.surname = 'sort';
+          sortNames.sex = 'sort';
+          sortNames.personal_code = 'sort';
+      }
+
+      this.sortToggleName = sortNames;
+      console.log(this.sortToggleName);
+      //this.sortToggleName(toggleName);
+ }
+
   /*
   inimesed(sortparams=[]): void {
     let inimesed = this.loendJaStat.list;
@@ -87,13 +122,17 @@ loendJaStatParsed(j): void {
   }
  */
 /*
-  tabeliLehed(loendiStat): void {
-    let pages = loendiStat.total / loendiStat.limit;
-    let offsets:number[];
-    for (let i = 0; i < pages; i++) {
-    offsets[i] = i * loendiStat.limit;
+
+function sortData(prop, asc) {
+    return function (a, b) {
+        if (asc == true) {
+            return a[prop] - b[prop];
+        }
+        else {
+            return b[prop] - a[prop];
+        }
     }
-    this.offsets = offsets;
-    console.log(this.offsets);
-  } */
+}
+
+*/
 }
