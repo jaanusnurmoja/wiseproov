@@ -20,6 +20,7 @@ export class TableComponent implements OnInit {
   ngOnInit(): void {
     this.loendJaStatOrig();
     this.setSortableFieldNames();
+    this.setSortToggleName('default','sort');
     //this.loendJaStatParsed();
     //this.inimesed();
   }
@@ -30,56 +31,54 @@ export class TableComponent implements OnInit {
     .then(j => this.loendJaStatParsed(j));
   }
 
-loendJaStatParsed(j): void {
-  let loendiStat = j.stats;
-  let inimesteLoend = j.list;
-  for (let inimene of inimesteLoend) {
-    let sugu:string = '';
-    sugu = inimene.sex == 'm' ? 'Mees' : 'Naine';
-    inimene.sex = sugu;
-    this.personalIdToFormattedDate(inimene.personal_code);
-    this.setSortToggleName('default','sort');
-
-    inimene.synna = this.synna;
-  }
+  loendJaStatParsed(j): void {
+    let loendiStat = j.stats;
+    let inimesteLoend = j.list;
+    for (let inimene of inimesteLoend) {
+      let sugu:string = '';
+      sugu = inimene.sex == 'm' ? 'Mees' : 'Naine';
+      inimene.sex = sugu;
+      this.personalIdToFormattedDate(inimene.personal_code);
+      inimene.synna = this.synna;
+    }
     this.loendiStat = loendiStat;
     this.inimesteLoend = inimesteLoend;
-  let pages = loendiStat.total / loendiStat.limit;
-  let offsets:{page: number, value: number}[] = [];
-    for (let i = 0; i < pages; i++) {
-      offsets[i] = {"page": i+1, "value": i * loendiStat.limit};
-    }
-  this.offsets = offsets;
-  console.log(this.inimesteLoend);
-  console.log(this.loendiStat);
-  console.log(this.offsets);
+    let pages = loendiStat.total / loendiStat.limit;
+    let offsets:{page: number, value: number}[] = [];
+      for (let i = 0; i < pages; i++) {
+        offsets[i] = {"page": i+1, "value": i * loendiStat.limit};
+      }
+    this.offsets = offsets;
+    console.log(this.inimesteLoend);
+    console.log(this.loendiStat);
+    console.log(this.offsets);
   }
 
- activeTr(id):void {
-  this.isActive = this.isActive == id ? false : id;
+  activeTr(id):void {
+    this.isActive = this.isActive == id ? false : id;
  }
 
- personalIdToFormattedDate(personalId):void {
-  let idAsString = String(personalId);
-  let sajandiArv = ['5','6'].includes(idAsString[0]) ? '20' : '19';
-  let aasta = sajandiArv + idAsString.substring(1,3);void
-  console.log(idAsString);
-  let kuu = idAsString.substring(3,5);
-  let paev = idAsString.substring(5,7);
-  this.synna = paev + '.' + kuu + '.' + aasta;
- }
+  personalIdToFormattedDate(personalId):void {
+    let idAsString = String(personalId);
+    let sajandiArv = ['5','6'].includes(idAsString[0]) ? '20' : '19';
+    let aasta = sajandiArv + idAsString.substring(1,3);void
+    console.log(idAsString);
+    let kuu = idAsString.substring(3,5);
+    let paev = idAsString.substring(5,7);
+    this.synna = paev + '.' + kuu + '.' + aasta;
+  }
 
- setSortableFieldNames(): void {
-   const field:any = {};
+  setSortableFieldNames(): void {
+    const field:any = {};
     field.firstname = 'firstname';
     field.surname = 'surname';
     field.sex = 'sex';
     field.birthdate = 'birthdate';
     field.personal_code = 'personal_code';
     this.sortableField = field;
- }
+  }
 
- setSortToggleName(sortableField, toggleName): void {
+   setSortToggleName(sortableField, toggleName): void {
       let sortNames:any = {};
       let sn:string = 'sort';
       if (toggleName =='') sn = 'sort';
@@ -102,7 +101,7 @@ loendJaStatParsed(j): void {
       this.sortToggleName = sortNames;
       console.log(this.sortToggleName);
       //this.sortToggleName(toggleName);
- }
+   }
 
   /*
   inimesed(sortparams=[]): void {
