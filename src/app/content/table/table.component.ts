@@ -9,6 +9,7 @@ export class TableComponent implements OnInit {
 
   loendiStat: any;
   inimesteLoend: any;
+  fullList: any;
   offsets: any;
   isActive: any = false;
   synna:string = '';
@@ -21,7 +22,7 @@ export class TableComponent implements OnInit {
     this.loendJaStatOrig();
     this.setSortableFieldNames();
     this.setSortToggleName('default','sort');
-    //this.loendJaStatParsed();
+   //this.loendJaStatParsed();
     //this.inimesed();
   }
 
@@ -49,12 +50,25 @@ export class TableComponent implements OnInit {
         offsets[i] = {"page": i+1, "value": i * loendiStat.limit};
       }
     this.offsets = offsets;
+    this.getFullData(this.loendiStat.total);
+
     console.log(this.inimesteLoend);
-    console.log(this.loendiStat);
+    console.log(this.loendiStat.total);
     console.log(this.offsets);
   }
 
-  activeTr(id):void {
+getFullData(total): void {
+  fetch('https://midaiganes.irw.ee/api/list?limit=500')
+  .then(response => response.json())
+  .then(full => this.loendTaiesPikkuses(full));
+}
+
+loendTaiesPikkuses(full): void {
+  this.fullList = full.list;
+  console.log('Statistika: '+full.stats);
+}
+
+  activeTr(id): void {
     this.isActive = this.isActive == id ? false : id;
  }
 
@@ -128,39 +142,7 @@ export class TableComponent implements OnInit {
       //this.sortToggleName(toggleName);
    }
 
-   reset(): any {
+   reset(): void {
     this.loendJaStatOrig('?offset=' + this.loendiStat.offset);
    }
-
-  /*
-  inimesed(sortparams=[]): void {
-    let inimesed = this.loendJaStat.list;
-    let field = '';
-    let direction = "";
-    if (sortparams == []) {
-      field = 'surname';
-      direction = "asc";
-    }
-    else {
-      field = sortparams[0];
-      direction = sortparams[1];
-    }
-    inimesed.sort(sortData(field, direction));
-    this.inimesteLoend = inimesed;
-  }
- */
-/*
-
-function sortData(prop, asc) {
-    return function (a, b) {
-        if (asc == true) {
-            return a.prop - b.prop;
-        }
-        else {
-            return b.prop - a.prop;
-        }
-    }
-}
-
-*/
 }
