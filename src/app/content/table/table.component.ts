@@ -65,7 +65,7 @@ getFullData(total): void {
 
 loendTaiesPikkuses(full): void {
   this.fullList = full.list;
-  console.log('Statistika: '+full.stats);
+  console.log('Statistika: '+full.stats.results);
 }
 
   activeTr(id): void {
@@ -105,6 +105,7 @@ loendTaiesPikkuses(full): void {
    setSortToggleName(sortableField, toggleName): void {
       let sortNames:any = {};
       let sortedData:any[] = [];
+      let finalSort:any[] = [];
       let asc:boolean = false;
       let desc:boolean = false;
       let none:boolean = true;
