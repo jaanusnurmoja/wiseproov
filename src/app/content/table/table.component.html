@@ -1,7 +1,7 @@
 <h1>NIMEKIRI</h1>
-  <p *ngIf="this.fullList">{{this.fullList.length}}</p>
+  <p *ngIf="total">{{total}}</p>
 <table>
-  <thead *ngIf="this.sortToggleName as st">
+  <thead *ngIf="sortToggleName as st">
   <tr>
     <ng-container *ngIf="st.firstname || 'sort' as tgFirstName">
     <th #th role="button" [id]="this.sortableField.firstname" (click)="setSortToggleName('firstname',tgFirstName)">Eesnimi
@@ -29,20 +29,20 @@
   <tfoot>
   <tr>
     <td colspan="5">
-        <button *ngFor="let o of this.offsets" (click)="loendJaStatOrig('?offset='+o.value)">{{o.page}}</button>
+        <button *ngFor="let o of offsets" (click)="setSliceInimesed(inimesteLoend, o.value, o.next)">{{o.page}}</button>
     </td>
   </tr>
   </tfoot>
   <tbody>
-  <ng-container *ngFor="let d of this.inimesteLoend">
-  <tr #tr role="button" class="clickable" (click)="tr.classList.toggle('active'); activeTr(d.id)">
-    <td class="name firstname">{{d.firstname}}</td>
-    <td class="name surname">{{d.surname}}</td>
-    <td class="sex">{{d.sex}}</td>
-    <td class="date">{{d.synna}}</td>
-    <td class="phone">{{d.phone}}</td>
-  </tr>
-    <ng-container *ngIf="this.isActive===d.id">
+    <ng-container *ngFor="let d of sliceInimesed">
+      <tr #tr role="button" class="clickable" (click)="tr.classList.toggle('active'); activeTr(d.id)">
+        <td class="name firstname">{{d.firstname}}</td>
+        <td class="name surname">{{d.surname}}</td>
+        <td class="sex">{{d.sex}}</td>
+        <td class="date">{{d.synna}}</td>
+        <td class="phone">{{d.phone}}</td>
+      </tr>
+    <ng-container *ngIf="isActive == d.id">
   <tr id="{{d.id}}_intro">
     <td colspan="5">
       <img class="intro" src="{{d.image.small}}">
