@@ -1,5 +1,6 @@
 <h1>NIMEKIRI</h1>
-  <p *ngIf="total">{{total}}</p>
+  <button role="button" class="btn btn-warning" *ngIf="total" (click)="switchTotals(108)">Ridu: {{total}}</button>
+<p>Klikka muutmiseks. Ridu on kas 108 (nagu ülesandepüstituses) või nii palju, kui neid andmeallikal parasjagu juhtub olema, näiteks 500.</p>
 <table>
   <thead *ngIf="sortToggleName as st">
   <tr>
