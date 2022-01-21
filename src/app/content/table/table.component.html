@@ -5,23 +5,23 @@
   <thead *ngIf="sortToggleName as st">
   <tr>
     <ng-container *ngIf="st.firstname || 'sort' as tgFirstName">
-    <th #th role="button" [id]="this.sortableField.firstname" (click)="setSortToggleName('firstname',tgFirstName)">Eesnimi
+    <th #th role="button" [id]="this.sortableField.firstname" (click)="setSortToggleNameAndSort('firstname',tgFirstName)">Eesnimi
         <ngx-fa [name]="tgFirstName" size="lg"></ngx-fa>
     </th>
     </ng-container>
 
     <ng-container *ngIf="st.surname || 'sort' as tgSurName">
-    <th #th role="button" [id]="this.sortableField.surname"  (click)="setSortToggleName('surname',tgSurName)" >Perekonnanimi
+    <th #th role="button" [id]="this.sortableField.surname"  (click)="setSortToggleNameAndSort('surname',tgSurName)" >Perekonnanimi
       <ngx-fa [name]="tgSurName" size="lg"></ngx-fa></th>
     </ng-container>
 
     <ng-container *ngIf="st.sex || 'sort' as tgSex">
-    <th #th role="button" [id]="this.sortableField.sex" (click)="setSortToggleName('sex',tgSex)">Sugu
+    <th #th role="button" [id]="this.sortableField.sex" (click)="setSortToggleNameAndSort('sex',tgSex)">Sugu
       <ngx-fa [name]="tgSex" size="lg"></ngx-fa></th>
     </ng-container>
 
     <ng-container *ngIf="st.personal_code || 'sort' as tgBorn">
-    <th #th role="button" [id]="this.sortableField.birthdate" (click)="setSortToggleName('birthdate',tgBorn)">Sünnipäev
+    <th #th role="button" [id]="this.sortableField.birthdate" (click)="setSortToggleNameAndSort('birthdate',tgBorn)">Sünnipäev
       <ngx-fa [name]="tgBorn" size="lg"></ngx-fa></th>
     </ng-container>
     <th #th role="button" id="phone">Telefon</th>

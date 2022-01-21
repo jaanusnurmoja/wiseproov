@@ -25,7 +25,7 @@ export class TableComponent implements OnInit {
   ngOnInit(): void {
    this.getTotal();
    this.setSortableFieldNames();
-   this.setSortToggleName('default','sort');
+   this.setSortToggleNameAndSort('default','sort');
   }
 
   getTotal(): void {
@@ -85,7 +85,7 @@ export class TableComponent implements OnInit {
   }
 
 
-     setSortToggleName(sortableField, toggleName): void {
+     setSortToggleNameAndSort(sortableField, toggleName): void {
         const unsorted = this.inimesteLoend;
         let loend = this.inimesteLoend;
         let sortNames:any = {};
