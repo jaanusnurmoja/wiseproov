@@ -27,6 +27,7 @@ export class TableComponent implements OnInit {
    this.setSortableFieldNames();
    this.setSortToggleName('default','sort');
   }
+
   getTotal(): void {
     fetch('https://midaiganes.irw.ee/api/list?limit=0')
     .then(r => r.json())
@@ -34,8 +35,15 @@ export class TableComponent implements OnInit {
   }
 
   setTotal(t): void {
-    this.total = t.stats.total;
+    this.total = typeof t === 'number' ? t : t.stats.total;
     this.loendJaStatOrig(this.total);
+  }
+
+  switchTotals(altTotal): any {
+    let total = this.total != altTotal ? altTotal : this.loendiStat.total;
+    let alt = this.total == altTotal ? this.total : altTotal;
+    this.setTotal(total);
+    return alt;
   }
 
   loendJaStatOrig(total, param = ''): void {
