@@ -12,6 +12,8 @@ export class TableComponent implements OnInit {
   sliceInimesed: any;
   total: number = 0;
   limit:number = 10;
+  start = 0;
+  next = this.limit;
   offsets: any;
   isActive: any = false;
   synna: string = '';
@@ -25,7 +27,7 @@ export class TableComponent implements OnInit {
  //  this.loendJaStatOrig();
    this.setSortableFieldNames();
    this.setSortToggleName('default','sort');
-   this.setSliceInimesed(this.inimesteLoend, 0, 10)
+   //this.setSliceInimesed(this.inimesteLoend, 0, 10)
    //this.loendJaStatParsed();
     //this.inimesed();
   }
@@ -61,8 +63,7 @@ export class TableComponent implements OnInit {
 
     this.loendiStat = loendiStat;
     this.inimesteLoend = inimesteLoend;
-    this.setSliceInimesed(inimesteLoend, 0, 10)
-
+    this.setSliceInimesed(inimesteLoend, this.start, this.next);
     let pages = Math.ceil(this.total / this.limit);
     let offsets:{pageIndex: number, page: number, value: number, next: number}[] = [];
 
@@ -82,27 +83,39 @@ export class TableComponent implements OnInit {
 
 
      setSortToggleName(sortableField, toggleName): void {
+        const unsorted = this.inimesteLoend;
+        let loend = this.inimesteLoend;
         let sortNames:any = {};
         let sortedData:any[] = [];
         let finalSort:any[] = [];
         let asc:boolean = false;
         let desc:boolean = false;
-        let none:boolean = true;
+        let none:boolean = false;
         let sn:string = 'sort';
-        if (toggleName =='') sn = 'sort';
-        if (toggleName =='sort') sn = 'sort-up';
-        if (toggleName == 'sort-up') sn = 'sort-down';
-        if (toggleName == 'sort-down') sn = 'sort';
-        asc = sn == 'sort-up' ? true : false;
-        desc = sn == 'sort-down' ? true : false;
-        none = sn == 'sort' ? true : false;
+        if (toggleName =='') {
+          sn = 'sort';
+        }
+        if (toggleName =='sort') {
+          sn = 'sort-up';
+          asc = true;
+        }
+        if (toggleName == 'sort-up') {
+          sn = 'sort-down';
+          desc = true;
+        }
+        if (toggleName == 'sort-down') {
+          sn = 'sort';
+          none = true;
+        }
+
         if (sortableField == 'default') sortNames.default = 'sort';
         if (sortableField == 'firstname'){
-          sortNames.firstname = sn;
-        }
+            sortNames.firstname = sn;
+            sortedData = loend.sort((a, b) => (this.sortCompare(a.firstname, b.firstname, asc, desc)));
+         }
         if (sortableField == 'surname') {
           sortNames.surname = sn;
-          sortedData = this.inimesteLoend.sort((a, b) => (this.sortCompare(a.surname, b.surname, asc, desc)));
+          sortedData = loend.sort((a, b) => (this.sortCompare(a.surname, b.surname, asc, desc)));
         }
         if (sortableField == 'sex') {sortNames.sex = sn;}
         if (sortableField == 'birthdate') {sortNames.personal_code = sn;}
@@ -115,15 +128,22 @@ export class TableComponent implements OnInit {
         }
 
         this.sortToggleName = sortNames;
-        this.inimesteLoend = sortedData;
-        this.setSliceInimesed(sortedData, 0, 10)
-        if (none) this.reset();
-        console.log(this.sortToggleName);
+         this.setSliceInimesed(loend, this.start, this.next);
+       if (none) {
+          this.reset();
+        } else {
+         this.inimesteLoend = sortedData;
+       }
+        console.log(this.sortToggleName,this.inimesteLoend[0], unsorted[0]);
+        this.setSliceInimesed(this.inimesteLoend, this.start, this.next);
         //this.sortToggleName(toggleName);
      }
 
-  setSliceInimesed(inimesed, start = 0, next = 10): void {
-    if (!inimesed) inimesed = this.inimesteLoend;
+  setSliceInimesed(inimesed = this.inimesteLoend, start?:number, next?:number): void {
+    if (typeof start === 'undefined') start = 0;
+    if (typeof next === 'undefined') next = this.limit;
+    this.start = start;
+    this.next = next;
     this.sliceInimesed = inimesed.slice(start,next);
     console.log(this.sliceInimesed);
   }

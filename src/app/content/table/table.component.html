@@ -29,7 +29,7 @@
   <tfoot>
   <tr>
     <td colspan="5">
-        <button *ngFor="let o of offsets" (click)="setSliceInimesed(inimesteLoend, o.value, o.next)">{{o.page}}</button>
+        <button *ngFor="let o of offsets" (click)="setSliceInimesed(inimesteLoend, o.value, o.next);start=o.value;next=o.next;">{{o.page}}</button>
     </td>
   </tr>
   </tfoot>
