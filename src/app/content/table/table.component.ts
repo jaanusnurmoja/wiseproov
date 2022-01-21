@@ -24,12 +24,8 @@ export class TableComponent implements OnInit {
 
   ngOnInit(): void {
    this.getTotal();
- //  this.loendJaStatOrig();
    this.setSortableFieldNames();
    this.setSortToggleName('default','sort');
-   //this.setSliceInimesed(this.inimesteLoend, 0, 10)
-   //this.loendJaStatParsed();
-    //this.inimesed();
   }
   getTotal(): void {
     fetch('https://midaiganes.irw.ee/api/list?limit=0')
@@ -74,7 +70,6 @@ export class TableComponent implements OnInit {
     }
 
     this.offsets = offsets;
-    // this.getFullData(this.loendiStat.total);
 
     console.log(this.inimesteLoend);
     console.log(this.loendiStat.total);
