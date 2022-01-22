@@ -49,7 +49,7 @@
       <img class="intro" src="{{d.image.small}}">
       {{d.intro}}
       <p>
-        <a href="/article/{{d.id}}" (click)="loendJaStatOrig('/' + d.id)">Loe edasi</a>
+        <a [routerLink]="['/article',d.id]">Loe edasi</a>
       </p>
     </td>
   </tr>

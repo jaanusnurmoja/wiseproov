@@ -9,7 +9,8 @@ const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'home', component: HomeComponent, redirectTo: ''},
   {path: 'table', component: TableComponent},
-  {path: 'article', component: ArticleComponent}
+  {path: 'article', component: ArticleComponent},
+  {path: 'article/:id', component: ArticleComponent}
 ];
 
 @NgModule({

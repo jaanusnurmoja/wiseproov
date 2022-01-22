@@ -1,22 +1,23 @@
-  <h1 tabindex="0" aria-label="Lorem ipsum dolor sit.">Lorem ipsum
-  dolor sit.</h1>
+<ng-container *ngIf="article">
+  <h1>{{article.title}}</h1>
+  <h2>{{article.firstname}} {{article.surname}}</h2>
   <div tabindex="0" class="intro">
     <p>Feugiat posuere ante donec gravida ipsum orci dis senectus
-    aenean, quis sociosqu cursus ornare adipiscing primis hendrerit a himenaeos tristique, hac dapibus ut nascetur est
-    curae velit libero. Condimentum dui litora nisi lorem per natoque aenean ultrices amet curae auctor finibus, iaculis
-    torquent molestie lacinia fames sapien feugiat dictumst facilisis odio.</p>
+      aenean, quis sociosqu cursus ornare adipiscing primis hendrerit a himenaeos tristique, hac dapibus ut nascetur est
+      curae velit libero. Condimentum dui litora nisi lorem per natoque aenean ultrices amet curae auctor finibus, iaculis
+      torquent molestie lacinia fames sapien feugiat dictumst facilisis odio.</p>
   </div>
-    <img tabindex="0"
-         src="http://midaiganes.irw.ee/api/imgs/medium/ba723773.jpg"
-         alt="Molestie finibus duis."
-         title="Feugiat pharetra facilisis.">
-    <div class="image__title">Feugiat pharetra facilisis.</div>
-    <div class="image__fade">
-      <div class="image__fade__img"
-           style="background-image: url(&quot;http://midaiganes.irw.ee/api/imgs/medium/ba723773.jpg&quot;);"></div>
-    </div>
-    <div class="image__face"
+  <img tabindex="0"
+       src="http://midaiganes.irw.ee/api/imgs/medium/ba723773.jpg"
+       alt="Molestie finibus duis."
+       title="Feugiat pharetra facilisis.">
+  <div class="image__title">Feugiat pharetra facilisis.</div>
+  <div class="image__fade">
+    <div class="image__fade__img"
          style="background-image: url(&quot;http://midaiganes.irw.ee/api/imgs/medium/ba723773.jpg&quot;);"></div>
+  </div>
+  <div class="image__face"
+       style="background-image: url(&quot;http://midaiganes.irw.ee/api/imgs/medium/ba723773.jpg&quot;);"></div>
   <div tabindex="0"><p>Montes nisl nibh vehicula pretium molestie maecenas potenti, nam ridiculus
     porttitor volutpat rutrum ut, class lorem lacus nisi commodo mollis. Metus finibus semper netus vehicula
     sollicitudin aliquam mollis lobortis ac, blandit arcu adipiscing ipsum hendrerit fusce faucibus imperdiet. Blandit
@@ -62,3 +63,5 @@
       sagittis et commodo sit lacinia porta purus feugiat eros lorem, nibh tortor proin tristique risus vel fusce
       gravida tempus phasellus sed nulla semper malesuada.</p></div>
 
+
+</ng-container>
