@@ -120,8 +120,14 @@ export class TableComponent implements OnInit {
           sortNames.surname = sn;
           sortedData = loend.sort((a, b) => (this.sortCompare(a.surname, b.surname, asc, desc)));
         }
-        if (sortableField == 'sex') {sortNames.sex = sn;}
-        if (sortableField == 'birthdate') {sortNames.personal_code = sn;}
+        if (sortableField == 'sex') {
+          sortNames.sex = sn;
+          sortedData = loend.sort((a, b) => (this.sortCompare(a.sex, b.sex, asc, desc)));
+        }
+        if (sortableField == 'birthdate') {
+          sortNames.personal_code = sn;
+          sortedData = loend.sort((a, b) => (this.sortCompare(a.personal_code, b.personal_code, asc, desc)));
+        }
         if (sortableField == '') {
             sortNames.default = 'sort';
             sortNames.firstname = 'sort';
