@@ -63,7 +63,7 @@ body {
 }
 
 .inline {
-    max-width: var(--twnMaxWidth);
+    max-width: var(--maxWidth);
     min-height: 100%;
     margin: 0 auto
 }
@@ -103,7 +103,7 @@ body {
     --font: BoosterNextFY;
     --textFont: "Open Sans";
     --rootFontSize: 16px;
-    --highlightColor: #14cc76;
+    --highlightColor: #ffc107;
     --textColor: #3a3d57;
     --alternateTextColor: #fff;
     --secondaryColor: #ff57a2;
@@ -111,7 +111,7 @@ body {
     --linkHoverColor: #d99f03;
     --blockColor: #efefef;
     --menuWidth: 220px;
-    --twnMaxWidth: 1000px
+    --maxWidth: 1000px
 }
 
 .text-highlight {

@@ -1,7 +1,7 @@
 <ng-container *ngIf="article">
   <h1>{{article.title}}</h1>
   <h2>{{article.firstname}} {{article.surname}}</h2>
-  <div tabindex="0" class="intro">
+  <div tabindex="0" class="intro" innerHTML="{{article.intro}}">
     {{article.intro}}
   </div>
   <img [src]="article.image.medium"
@@ -14,10 +14,12 @@
   </div>
   <div class="image__face"
        style="background-image: url(&quot;{{article.image.medium}}&quot;);"></div>
-  <div tabindex="0">{{article.body}}</div>
+  <div tabindex="0" innerHTML="{{article.body}}">{{article.body}}</div>
+  <mat-chip-list aria-label="Final chipset">
   <ng-container *ngFor="let t of article.tags">
-  <button type="button">{{t}}</button>
+  <mat-chip class="btn btn-success">{{t}}</mat-chip>
   </ng-container>
-  <button>{{article.boolean}}</button>
+  <mat-chip class="btn btn-warning">{{article.boolean}}</mat-chip>
+  </mat-chip-list>
 
 </ng-container>

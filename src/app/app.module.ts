@@ -11,6 +11,8 @@ import { HomeComponent } from './home/home.component';
 import { ContentComponent } from './content/content.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxFontAwesomeModule } from 'ngx-font-awesome';
+import {MatChipsModule} from '@angular/material/chips';
+
 
 @NgModule({
   declarations: [
@@ -27,6 +29,7 @@ import { NgxFontAwesomeModule } from 'ngx-font-awesome';
     AppRoutingModule,
     BrowserAnimationsModule,
     NgxFontAwesomeModule,
+    MatChipsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
