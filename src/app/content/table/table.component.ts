@@ -58,6 +58,8 @@ export class TableComponent implements OnInit {
     let inimesteLoend = j.list;
 
     for (let inimene of inimesteLoend) {
+      inimene.firstname = inimene.firstname.replace('\u200e', '');
+      inimene.surname = inimene.surname.replace('\u200e', '');
       let sugu:string = '';
       sugu = inimene.sex == 'm' ? 'Mees' : 'Naine';
       inimene.sex = sugu;
@@ -137,7 +139,6 @@ export class TableComponent implements OnInit {
         }
 
         this.sortToggleName = sortNames;
-         this.setSliceInimesed(loend, this.start, this.next);
        if (none) {
           this.reset();
         } else {
