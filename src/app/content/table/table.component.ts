@@ -52,6 +52,7 @@ export class TableComponent implements OnInit {
     .then(j => this.loendJaStatParsed(j));
   }
 
+
   loendJaStatParsed(j): void {
 
     let loendiStat = j.stats;
@@ -144,7 +145,7 @@ export class TableComponent implements OnInit {
         } else {
          this.inimesteLoend = sortedData;
        }
-        console.log(this.sortToggleName,this.inimesteLoend[0], unsorted[0]);
+        //console.log(this.sortToggleName,this.inimesteLoend[0], unsorted[0]);
         this.setSliceInimesed(this.inimesteLoend, this.start, this.next);
         //this.sortToggleName(toggleName);
      }
@@ -155,7 +156,7 @@ export class TableComponent implements OnInit {
     this.start = start;
     this.next = next;
     this.sliceInimesed = inimesed.slice(start,next);
-    console.log(this.sliceInimesed);
+    //console.log(this.sliceInimesed);
   }
 
   activeTr(id): void {
