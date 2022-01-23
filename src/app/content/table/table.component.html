@@ -1,7 +1,11 @@
 <h1>NIMEKIRI</h1>
-  <button role="button" class="btn btn-warning" *ngIf="total" (click)="switchTotals(108)">Ridu: {{total}}</button>
-<p>Klikka muutmiseks. Ridu on kas 108 (nagu ülesandepüstituses) või nii palju, kui neid andmeallikal parasjagu juhtub olema, näiteks 500.</p>
-<table>
+  <table>
+    <caption style="caption-side:top">
+      <div class="btn-group" role="group" style="width:100%; line-height:1em;"  *ngIf="total" >
+        <button class="btn btn-warning" role="button" style="padding-right:5px" (click)="switchTotals(108)">Ridu: {{total}}</button>
+        <button class="btn btn-light" role="button" (click)="switchTotals(108)">Klikka muutmiseks. Ridu on vaikimisi nii palju, kui neid andmeallikal parasjagu on (nt 500), kuid võib ka olla 108 (nagu ülesandepüstituses).</button>
+      </div>
+    </caption>
   <thead *ngIf="sortToggleName as st">
   <tr>
     <ng-container *ngIf="st.firstname || 'sort' as tgFirstName">

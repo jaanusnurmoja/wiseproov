@@ -41,7 +41,7 @@
 	font-display:swap
 }
 body,html{
-	background:var(--twn-backgroundColor);
+	background:var(--backgroundColor);
 	margin:0;
 	color:var(--alternateTextColor);
 	font-family:var(--textFont);
@@ -52,17 +52,7 @@ body{
 *{
 	box-sizing:border-box;
 }
-:root{
-	--font:BoosterNextFY;
-	--textFont:"Open Sans";
-	--rootFontSize:16px;
-	--highlightColor:#14cc76;
-	--textColor:#3a3d57;
-	--alternateTextColor:#fff;
-	--secondaryColor:#ff57a2;
-	--backgroundColor:#3a3d57;
-	--linkHoverColor:#03875c;
-	--blockColor:#efefef;
-	--menuWidth:220px;
-	--maxWidth:1000px;
-}
+ .logo {
+   margin: 1.5625rem 0 3.125rem;
+   cursor: pointer;
+ }

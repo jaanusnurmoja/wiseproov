@@ -52,12 +52,14 @@ export class TableComponent implements OnInit {
     .then(j => this.loendJaStatParsed(j));
   }
 
+
   loendJaStatParsed(j): void {
 
     let loendiStat = j.stats;
     let inimesteLoend = j.list;
 
     for (let inimene of inimesteLoend) {
+      inimene.firstname = inimene.firstname.replace('\u200e', '');
       let sugu:string = '';
       sugu = inimene.sex == 'm' ? 'Mees' : 'Naine';
       inimene.sex = sugu;
@@ -137,13 +139,13 @@ export class TableComponent implements OnInit {
         }
 
         this.sortToggleName = sortNames;
-         this.setSliceInimesed(loend, this.start, this.next);
+        //this.setSliceInimesed(loend, this.start, this.next);
        if (none) {
           this.reset();
         } else {
          this.inimesteLoend = sortedData;
        }
-        console.log(this.sortToggleName,this.inimesteLoend[0], unsorted[0]);
+        //console.log(this.sortToggleName,this.inimesteLoend[0], unsorted[0]);
         this.setSliceInimesed(this.inimesteLoend, this.start, this.next);
         //this.sortToggleName(toggleName);
      }
@@ -154,7 +156,7 @@ export class TableComponent implements OnInit {
     this.start = start;
     this.next = next;
     this.sliceInimesed = inimesed.slice(start,next);
-    console.log(this.sliceInimesed);
+    //console.log(this.sliceInimesed);
   }
 
   activeTr(id): void {
