@@ -1,6 +1,6 @@
 <header>
-  <button #menu aria-label="Toggle menu" class="clickable" (click)="menu.classList.toggle('active');">
-    <ngx-fa name="bars" size="lg">
+  <button #menu aria-label="Toggle menu" class="clickable" (click)="menu.classList.toggle('active');setMenuToggle(menuToggleName)">
+    <ngx-fa [name]="menuToggleName" size="lg">
       <i aria-hidden="true" class="fa fa-bars fa-lg"></i>
     </ngx-fa>
   </button>

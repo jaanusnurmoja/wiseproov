@@ -7,9 +7,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
+  menuToggleName: any;
+
   constructor() { }
 
   ngOnInit(): void {
+   this.setMenuToggle();
   }
+
+  setMenuToggle(word?: string) {
+    let tn: string = 'bars';
+    if (word == '') tn = 'bars';
+    if (word == 'bars') tn = 'times';
+    if (word == 'times') tn = 'bars';
+    this.menuToggleName = tn;
+  }
+
 
 }
