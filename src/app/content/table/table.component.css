@@ -23,3 +23,24 @@ table {
 table tr:nth-child(even) td {
     background: rgba(255,255,255,.1);
 }
+
+.intro {
+  float: left;
+  display: inline;
+  padding: 0.5em;
+  items-align: center;
+}
+.intro-img {
+  width:40%;
+}
+.intro-text {
+  width:60%;
+}
+p {
+  margin: 0 10px;
+}
+.intro-content {
+  max-height: 170px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
