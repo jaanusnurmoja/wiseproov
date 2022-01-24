@@ -29,9 +29,11 @@ h2 {
     margin: 3.75rem 0 0
 }
 
+/*
 p {
     margin: 2.5rem 0
 }
+*/
 
 p a {
     color: var(--highlightColor)

@@ -49,12 +49,12 @@
       </tr>
     <ng-container *ngIf="isActive == d.id">
   <tr id="{{d.id}}_intro">
-    <td colspan="5">
-      <img class="intro" src="{{d.image.small}}">
-      {{d.intro}}
-      <p>
-        <a [routerLink]="['/article',d.id]">Loe edasi</a>
-      </p>
+    <td colspan="5" display="inline-block">
+      <div class="intro intro-img"><img src="{{d.image.small}}" width="100%"></div>
+      <div class="intro intro-text">
+        <div class="intro-content"><p outerHTML="{{d.intro}}"></p></div>
+        <p style="display: block;"><a [routerLink]="['/article',d.id]">Loe edasi</a></p>
+      </div>
     </td>
   </tr>
   </ng-container>
