@@ -14,7 +14,11 @@ export class TableComponent implements OnInit {
   limit:number = 10;
   start = 0;
   next = this.limit;
+  pageTotal: any;
   offsets: any;
+  firstOffset: any;
+  lastPageIndex: any;
+  pageIndex: number = 0;
   isActive: any = false;
   synna: string = '';
   sortableField: any;
@@ -72,6 +76,9 @@ export class TableComponent implements OnInit {
     this.inimesteLoend = inimesteLoend;
     this.setSliceInimesed(inimesteLoend, this.start, this.next);
     let pages = Math.ceil(this.total / this.limit);
+    this.pageTotal = pages;
+    this.lastPageIndex = this.pageTotal - 1;
+
     let offsets:{pageIndex: number, page: number, value: number, next: number}[] = [];
 
     for (let i = 0; i < pages; i++) {
@@ -79,14 +86,9 @@ export class TableComponent implements OnInit {
       let next = osValue + this.limit;
       offsets[i] = {"pageIndex": i,"page": i+1, "value": osValue, "next": next};
     }
-
     this.offsets = offsets;
-
-    console.log(this.inimesteLoend);
-    console.log(this.loendiStat.total);
-    console.log(this.offsets);
+    this.firstOffset = offsets[0];
   }
-
 
      setSortToggleNameAndSort(sortableField, toggleName): void {
         const unsorted = this.inimesteLoend;
@@ -166,8 +168,7 @@ export class TableComponent implements OnInit {
   personalIdToFormattedDate(personalId):void {
     let idAsString = String(personalId);
     let sajandiArv = ['5','6'].includes(idAsString[0]) ? '20' : '19';
-    let aasta = sajandiArv + idAsString.substring(1,3);void
-    console.log(idAsString);
+    let aasta = sajandiArv + idAsString.substring(1,3);
     let kuu = idAsString.substring(3,5);
     let paev = idAsString.substring(5,7);
     this.synna = paev + '.' + kuu + '.' + aasta;
