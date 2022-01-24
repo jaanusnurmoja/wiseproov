@@ -8,6 +8,7 @@
 table th, table td{
     padding: 0.625rem 1rem;
     border-bottom: #fff 0.0625rem solid;
+    width:20%;
 }
 table th {
     background: var(--bs-yellow);
