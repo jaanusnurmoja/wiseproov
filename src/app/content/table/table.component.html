@@ -34,26 +34,32 @@
   <tfoot>
   <tr>
     <td colspan="5" class="buttonWrapper">
-        <button (click)="setSliceInimesed(inimesteLoend, 0, limit);start=0;next=limit;pageIndex=0">1</button>
-      <button (click)="pageIndex=pageIndex-1;setSliceInimesed(inimesteLoend, offsets[pageIndex].value, offsets[pageIndex].next);start=offsets[pageIndex].value;next=offsets[pageIndex].next;" aria-label="Navigate to previous page" variant="transparent" class="disabled button__transparent">
-        <ngx-fa name="chevron-left" size="md">
-          <i aria-hidden="true" class="fa fa-chevron-left fa-md"></i>
-        </ngx-fa>
-      </button>
+      <div role="group" class="btn-dark btn-xxl nav nav-fill" aria-label="Navigate" style="width:100%">
+        <span role="group" class="nav-item" aria-label="Start">
+            <button class="btn btn-dark btn-yxl" (click)="setSliceInimesed(inimesteLoend, 0, limit);start=0;next=limit;pageIndex=0">1</button>
+            <button class="btn btn-dark btn-yxl" (click)="pageIndex=pageIndex-1;setSliceInimesed(inimesteLoend, offsets[pageIndex].value, offsets[pageIndex].next);start=offsets[pageIndex].value;next=offsets[pageIndex].next;" aria-label="Navigate to previous page" variant="transparent" class="disabled button__transparent">
+          <ngx-fa name="chevron-left" size="md">
+            <i aria-hidden="true" class="fa fa-chevron-left fa-md"></i>
+          </ngx-fa>
+        </button>
+        </span>
       <ng-container *ngFor="let o of offsets;">
-        <ng-container *ngIf='start-(5*limit) <= o.value && o.value < start+(5*limit)'>
-        <button (click)="setSliceInimesed(inimesteLoend, o.value, o.next);
+      <ng-container *ngIf='nupula(o)'>
+        <button class="btn btn-dark btn-xxl nav-item" [class.btn-warning]="o.value == start" (click)="setSliceInimesed(inimesteLoend, o.value, o.next);
       start=o.value;next=o.next;pageIndex=o.pageIndex">
         {{o.page}}
         </button>
         </ng-container>
       </ng-container>
-        <button (click)="pageIndex=pageIndex+1;setSliceInimesed(inimesteLoend,  offsets[pageIndex].value, offsets[pageIndex].next);start=offsets[pageIndex].value;next=offsets[pageIndex].next;" aria-label="Navigate to next page" variant="transparent"  class="button__transparent">
+        <span role="group" aria-label="End" class="nav-item">
+          <button class="btn btn-dark btn-xxl" (click)="pageIndex=pageIndex+1;setSliceInimesed(inimesteLoend,  offsets[pageIndex].value, offsets[pageIndex].next);start=offsets[pageIndex].value;next=offsets[pageIndex].next;" aria-label="Navigate to next page" variant="transparent"  class="button__transparent">
           <ngx-fa name="chevron-right" size="md">
             <i aria-hidden="true" class="fa fa-chevron-right fa-md"></i>
           </ngx-fa>
         </button>
-        <button (click)="setSliceInimesed(inimesteLoend, offsets[lastPageIndex].value, offsets[lastPageIndex].next);start=offsets[lastPageIndex].value;next=offsets[lastPageIndex].next;">{{pageTotal}}</button>
+        <button class="btn btn-dark btn-xxl" (click)="setSliceInimesed(inimesteLoend, offsets[lastPageIndex].value, offsets[lastPageIndex].next);start=offsets[lastPageIndex].value;next=offsets[lastPageIndex].next;">{{pageTotal}}</button>
+          </span>
+        </div>
     </td>
   </tr>
   </tfoot>

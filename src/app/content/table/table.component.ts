@@ -194,6 +194,18 @@ export class TableComponent implements OnInit {
     return 0;
   }
 
+  nupula (offset): boolean {
+    if (this.pageIndex < 5) {
+      return offset.value >= 0 && offset.value < 10*this.limit;
+    }
+    else if (this.pageIndex >= this.pageTotal - 5) {
+       return offset.value >= (this.pageTotal - 10) * this.limit && offset.value < this.total;
+    }
+    else {
+      return offset.value >= this.start-(5*this.limit) && offset.value < this.start+(5*this.limit);
+    }
+  }
+
    reset(): void {
     this.loendJaStatOrig(this.total);
    }
