@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonService } from '../common.service'
 
 @Component({
   selector: 'app-menu',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuComponent implements OnInit {
 
-  constructor() { }
+  constructor(private common : CommonService) { }
 
   ngOnInit(): void {
+    this.getMenuToggleName()
   }
 
+  getMenuToggleName(): string {
+    return this.common.menuToggleName;
+  }
 }

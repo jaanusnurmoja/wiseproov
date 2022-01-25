@@ -1,4 +1,4 @@
-<menu>
+<menu class [ngClass]="getMenuToggleName() == 'times' ? 'menu-visible' : ''">
 <img src="/assets/imgs/nurmoja_net_ee.png" class="logo">
 <ul>
   <li><a routerLink="/home" [routerLinkActive]="['active']" class>Wiseproov <ngx-fa name="home" size="md"></ngx-fa></a></li>

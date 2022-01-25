@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonService } from '../common.service';
 
 @Component({
   selector: 'app-header',
@@ -7,21 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  menuToggleName: any;
-
-  constructor() { }
+  constructor(private common : CommonService) { }
 
   ngOnInit(): void {
    this.setMenuToggle();
   }
 
-  setMenuToggle(word?: string) {
-    let tn: string = 'bars';
-    if (word == '') tn = 'bars';
-    if (word == 'bars') tn = 'times';
-    if (word == 'times') tn = 'bars';
-    this.menuToggleName = tn;
+  setMenuToggle(word?): void {
+    this.common.setMenuToggle(word);
   }
 
+  getMenuToggleName(): string {
+    return this.common.menuToggleName;
+  }
 
 }
