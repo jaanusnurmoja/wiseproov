@@ -10,12 +10,38 @@ export class ArticleComponent implements OnInit {
 
   article: any;
   id: any;
+  loendiStat: any;
+  total: any;
 
   constructor(private _Activatedroute:ActivatedRoute) { }
 
   ngOnInit(): void {
+   this.getTotal();
+  }
+
+  getTotal(): void {
+    fetch('https://midaiganes.irw.ee/api/list?limit=0')
+    .then(r => r.json())
+    .then(t => this.setTotal(t));
+  }
+
+  setTotal(t): void {
+    this.total = typeof t === 'number' ? t : t.stats.total;
+    this.loendJaStatOrig(this.total);
+  }
+
+  loendJaStatOrig(total): void {
+    fetch('https://midaiganes.irw.ee/api/list?limit=' + total)
+    .then(response => response.json())
+    .then(j => this.setArticleId(j));
+  }
+
+  setArticleId(j): void {
+    this.loendiStat = j.stats;
+    let ids = j.list.map(t => t.id);
+    let random = ids[Math.floor(Math.random()*ids.length)];
     this._Activatedroute.paramMap.subscribe(params => {
-        this.id = params.get('id') || '4e34a5c4';
+        this.id = params.get('id') || random;
         this.getArticleFromUrl(this.id);
     });
   }
