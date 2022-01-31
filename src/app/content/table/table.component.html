@@ -24,7 +24,7 @@
       <ngx-fa [name]="tgSex" size="lg"></ngx-fa></th>
     </ng-container>
 
-    <ng-container *ngIf="st.personal_code || 'sort' as tgBorn">
+    <ng-container *ngIf="st.sortCode || 'sort' as tgBorn">
     <th #th role="button" [id]="this.sortableField.birthdate" (click)="setSortToggleNameAndSort('birthdate',tgBorn)">Sünnipäev
       <ngx-fa [name]="tgBorn" size="lg"></ngx-fa></th>
     </ng-container>

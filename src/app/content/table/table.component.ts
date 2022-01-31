@@ -21,6 +21,7 @@ export class TableComponent implements OnInit {
   pageIndex: number = 0;
   isActive: any = false;
   synna: string = '';
+  sortSynna: number = 0;
   sortableField: any;
   sortToggleName: any;
 
@@ -70,6 +71,7 @@ export class TableComponent implements OnInit {
       inimene.sex = sugu;
       this.personalIdToFormattedDate(inimene.personal_code);
       inimene.synna = this.synna;
+      inimene.sortCode = this.sortSynna;
     }
 
     this.loendiStat = loendiStat;
@@ -130,15 +132,15 @@ export class TableComponent implements OnInit {
           sortedData = loend.sort((a, b) => (this.sortCompare(a.sex, b.sex, asc, desc)));
         }
         if (sortableField == 'birthdate') {
-          sortNames.personal_code = sn;
-          sortedData = loend.sort((a, b) => (this.sortCompare(a.personal_code, b.personal_code, asc, desc)));
+          sortNames.sortCode = sn;
+          sortedData = loend.sort((a, b) => (this.sortCompare(a.sortCode, b.sortCode, asc, desc)));
         }
         if (sortableField == '') {
             sortNames.default = 'sort';
             sortNames.firstname = 'sort';
             sortNames.surname = 'sort';
             sortNames.sex = 'sort';
-            sortNames.personal_code = 'sort';
+            sortNames.sortCode = 'sort';
         }
 
         this.sortToggleName = sortNames;
@@ -169,6 +171,7 @@ export class TableComponent implements OnInit {
     let idAsString = String(personalId);
     let sajandiArv = ['5','6'].includes(idAsString[0]) ? '20' : '19';
     let aasta = sajandiArv + idAsString.substring(1,3);
+    this.sortSynna = Number(aasta+idAsString.substring(3));
     let kuu = idAsString.substring(3,5);
     let paev = idAsString.substring(5,7);
     this.synna = paev + '.' + kuu + '.' + aasta;
@@ -181,6 +184,7 @@ export class TableComponent implements OnInit {
     field.sex = 'sex';
     field.birthdate = 'birthdate';
     field.personal_code = 'personal_code';
+    field.sortCode = 'sort_code';
     this.sortableField = field;
   }
 
