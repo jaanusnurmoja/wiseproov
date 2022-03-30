@@ -59,7 +59,7 @@
     </td>
   </tr>
   </tfoot>
-  <tbody>
+  <tbody *ngIf="sliceInimesed?.length">
     <ng-container *ngFor="let d of sliceInimesed">
       <tr #tr role="button" class="clickable" (click)="tr.classList.toggle('active'); activeTr(d.id)">
         <td class="name firstname">{{d.firstname}}</td>
@@ -81,4 +81,10 @@
   </ng-container>
   </ng-container>
   </tbody>
+      <tbody *ngIf="!sliceInimesed?.length">
+      <tr>
+        <td colspan="2" style="text-align:center;"><img src="/assets/imgs/loader.svg" width="100"></td>
+        <td colspan="3" style="text-align:center;"><h2>Laeb andmeid, palun oota</h2></td>
+      </tr>
+      </tbody>
 </table>
