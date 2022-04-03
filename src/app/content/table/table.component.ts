@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { parsePhoneNumber } from 'libphonenumber-js';
+import { CommonService } from '../../common.service';
 
 @Component({
   selector: 'app-table',
@@ -26,45 +27,44 @@ export class TableComponent implements OnInit {
   sortableField: any;
   sortToggleName: any;
 
-  constructor() { }
+  constructor(private common : CommonService) { }
 
   ngOnInit(): void {
-   this.getTotal();
+   this.common.queryCountOfAllItems();
+   this.setTotalIfMissing();
    this.setSortableFieldNames();
    this.setSortToggleNameAndSort('default','sort');
   }
 
-  getTotal(): void {
-    fetch('https://midaiganes.irw.ee/api/list?limit=0')
-    .then(r => r.json())
-    .then(t => this.setTotal(t));
-  }
+  setTotalIfMissing(): void {
+  if (!this.common.total || this.common.total == 0) {
+    }
+    this.total = this.common.total;
+    this.loendJaStatParsed();
 
-  setTotal(t): void {
-    this.total = typeof t === 'number' ? t : t.stats.total;
-    this.loendJaStatOrig(this.total);
   }
 
   switchTotals(altTotal): any {
-    let total = this.total != altTotal ? altTotal : this.loendiStat.total;
-    let alt = this.total == altTotal ? this.total : altTotal;
-    this.setTotal(total);
-    return alt;
+    let total = this.total != altTotal ? altTotal : this.total;
+    //let alt = this.common.total == altTotal ? this.common.total : altTotal;
+    this.common.setTotal(total);
+    this.setTotalIfMissing();
+    return altTotal;
   }
 
-  loendJaStatOrig(total, param = ''): void {
-    fetch('https://midaiganes.irw.ee/api/list?limit=' + total + param)
-    .then(response => response.json())
-    .then(j => this.loendJaStatParsed(j));
-  }
+   getTotal(): number {
+     return this.total;
+   }
 
-
-  loendJaStatParsed(j): void {
-
+ loendJaStatParsed(): void {
+    let j = this.common.loendJaStatParsed;
+    console.log(j);
     let loendiStat = j.stats;
     let inimesteLoend = j.list;
 
+
     for (let inimene of inimesteLoend) {
+    console.log(inimene);
       inimene.firstname = inimene.firstname.replace('\u200e', '');
       inimene.surname = inimene.surname.replace('\u200e', '');
       let sugu:string = '';
@@ -214,6 +214,6 @@ export class TableComponent implements OnInit {
   }
 
    reset(): void {
-    this.loendJaStatOrig(this.total);
+    this.common.loendJaStatOrig(this.total);
    }
 }
