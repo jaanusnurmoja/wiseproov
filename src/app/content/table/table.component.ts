@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { parsePhoneNumber } from 'libphonenumber-js';
 
 @Component({
   selector: 'app-table',
@@ -72,6 +73,8 @@ export class TableComponent implements OnInit {
       this.personalIdToFormattedDate(inimene.personal_code);
       inimene.synna = this.synna;
       inimene.sortCode = this.sortSynna;
+      let phoneNumber = parsePhoneNumber(inimene.phone);
+      inimene.phone = phoneNumber.formatInternational();
     }
 
     this.loendiStat = loendiStat;
