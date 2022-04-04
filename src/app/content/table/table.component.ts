@@ -6,6 +6,7 @@ import { parsePhoneNumber } from 'libphonenumber-js';
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.css']
 })
+
 export class TableComponent implements OnInit {
 
   loendiStat: any;
@@ -29,9 +30,9 @@ export class TableComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-   this.getTotal();
-   this.setSortableFieldNames();
-   this.setSortToggleNameAndSort('default','sort');
+    this.getTotal();
+    this.setSortableFieldNames();
+    this.setSortToggleNameAndSort('default','sort');
   }
 
   getTotal(): void {
@@ -94,64 +95,64 @@ export class TableComponent implements OnInit {
     this.firstOffset = offsets[0];
   }
 
-   setSortToggleNameAndSort(sortableField, toggleName): void {
-      let loend = this.inimesteLoend;
-      let sortNames:any = {};
-      let sortedData:any[] = [];
-      let finalSort:any[] = [];
-      let asc:boolean = false;
-      let desc:boolean = false;
-      let none:boolean = false;
-      let sn:string = 'sort';
-      if (toggleName =='') {
-        sn = 'sort';
-      }
-      if (toggleName =='sort') {
-        sn = 'sort-up';
-        asc = true;
-      }
-      if (toggleName == 'sort-up') {
-        sn = 'sort-down';
-        desc = true;
-      }
-      if (toggleName == 'sort-down') {
-        sn = 'sort';
-        none = true;
-      }
+  setSortToggleNameAndSort(sortableField, toggleName): void {
+    let loend = this.inimesteLoend;
+    let sortNames:any = {};
+    let sortedData:any[] = [];
+    let finalSort:any[] = [];
+    let asc:boolean = false;
+    let desc:boolean = false;
+    let none:boolean = false;
+    let sn:string = 'sort';
+    if (toggleName =='') {
+      sn = 'sort';
+    }
+    if (toggleName =='sort') {
+      sn = 'sort-up';
+      asc = true;
+    }
+    if (toggleName == 'sort-up') {
+      sn = 'sort-down';
+      desc = true;
+    }
+    if (toggleName == 'sort-down') {
+      sn = 'sort';
+      none = true;
+    }
 
-      if (sortableField == 'default') sortNames.default = 'sort';
-      if (sortableField == 'firstname'){
-          sortNames.firstname = sn;
-          sortedData = loend.sort((a, b) => (this.sortCompare(a.firstname, b.firstname, asc, desc)));
-       }
-      if (sortableField == 'surname') {
-        sortNames.surname = sn;
-        sortedData = loend.sort((a, b) => (this.sortCompare(a.surname, b.surname, asc, desc)));
-      }
-      if (sortableField == 'sex') {
-        sortNames.sex = sn;
-        sortedData = loend.sort((a, b) => (this.sortCompare(a.sex, b.sex, asc, desc)));
-      }
-      if (sortableField == 'birthdate') {
-        sortNames.sortCode = sn;
-        sortedData = loend.sort((a, b) => (this.sortCompare(a.sortCode, b.sortCode, asc, desc)));
-      }
-      if (sortableField == '') {
-          sortNames.default = 'sort';
-          sortNames.firstname = 'sort';
-          sortNames.surname = 'sort';
-          sortNames.sex = 'sort';
-          sortNames.sortCode = 'sort';
-      }
+    if (sortableField == 'default') sortNames.default = 'sort';
+    if (sortableField == 'firstname'){
+        sortNames.firstname = sn;
+        sortedData = loend.sort((a, b) => (this.sortCompare(a.firstname, b.firstname, asc, desc)));
+    }
+    if (sortableField == 'surname') {
+      sortNames.surname = sn;
+      sortedData = loend.sort((a, b) => (this.sortCompare(a.surname, b.surname, asc, desc)));
+    }
+    if (sortableField == 'sex') {
+      sortNames.sex = sn;
+      sortedData = loend.sort((a, b) => (this.sortCompare(a.sex, b.sex, asc, desc)));
+    }
+    if (sortableField == 'birthdate') {
+      sortNames.sortCode = sn;
+      sortedData = loend.sort((a, b) => (this.sortCompare(a.sortCode, b.sortCode, asc, desc)));
+    }
+    if (sortableField == '') {
+        sortNames.default = 'sort';
+        sortNames.firstname = 'sort';
+        sortNames.surname = 'sort';
+        sortNames.sex = 'sort';
+        sortNames.sortCode = 'sort';
+    }
 
-      this.sortToggleName = sortNames;
-     if (none) {
+    this.sortToggleName = sortNames;
+    if (none) {
         this.reset();
       } else {
-       this.inimesteLoend = sortedData;
-     }
+      this.inimesteLoend = sortedData;
+    }
       this.setSliceInimesed(this.inimesteLoend, this.start, this.next);
-   }
+  }
 
   setSliceInimesed(inimesed = this.inimesteLoend, start?:number, next?:number): void {
     if (typeof start === 'undefined') start = 0;
@@ -163,7 +164,7 @@ export class TableComponent implements OnInit {
 
   activeTr(id): void {
     this.isActive = this.isActive == id ? false : id;
- }
+  }
 
   personalIdToFormattedDate(personalId):void {
     let idAsString = String(personalId);
@@ -208,7 +209,7 @@ export class TableComponent implements OnInit {
     }
   }
 
-   reset(): void {
+  reset(): void {
     this.loendJaStatOrig(this.total);
-   }
+  }
 }

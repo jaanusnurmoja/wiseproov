@@ -14,7 +14,6 @@ import { NgxFontAwesomeModule } from 'ngx-font-awesome';
 import { MatChipsModule } from '@angular/material/chips';
 import { CommonService } from './common.service';
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,7 +22,7 @@ import { CommonService } from './common.service';
     TableComponent,
     ArticleComponent,
     HomeComponent,
-    ContentComponent
+    ContentComponent,
   ],
   imports: [
     BrowserModule,
@@ -33,6 +32,6 @@ import { CommonService } from './common.service';
     MatChipsModule,
   ],
   providers: [CommonService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

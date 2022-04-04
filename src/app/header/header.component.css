@@ -1,9 +1,8 @@
 header {
-    display: none;
+  display: none;
 }
-@media screen and (max-width: 960px)
-{
-header {
+@media screen and (max-width: 960px) {
+  header {
     display: flex;
     color: var(--alternateTextColor);
     font-family: var(--textFont);
@@ -15,7 +14,7 @@ header {
     height: 3.125rem;
     background: white;
     z-index: 999;
-    padding: .625rem 1.25rem;
+    padding: 0.625rem 1.25rem;
   }
   .logo {
     height: 100%;

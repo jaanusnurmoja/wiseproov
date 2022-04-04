@@ -1,13 +1,12 @@
 import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CommonService {
-
   menuToggleName: any;
 
-  constructor() { }
+  constructor() {}
 
   setMenuToggle(word?: string) {
     let tn: string = 'bars';

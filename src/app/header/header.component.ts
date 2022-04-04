@@ -4,14 +4,13 @@ import { CommonService } from '../common.service';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit {
-
-  constructor(private common : CommonService) { }
+  constructor(private common: CommonService) {}
 
   ngOnInit(): void {
-   this.setMenuToggle();
+    this.setMenuToggle();
   }
 
   setMenuToggle(word?): void {
@@ -21,5 +20,4 @@ export class HeaderComponent implements OnInit {
   getMenuToggleName(): string {
     return this.common.menuToggleName;
   }
-
 }

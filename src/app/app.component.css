@@ -1,58 +1,74 @@
-@font-face{
-	font-family:BoosterNextFY;
-	src:url(/assets/fonts/BoosterNextFY-Bold.woff2) format("woff2"),url(/assets/fonts/BoosterNextFY-Bold.woff) format("woff");
-	font-weight:700;
-	font-style:normal;
-	font-display:swap;
+@font-face {
+  font-family: BoosterNextFY;
+  src: url(/assets/fonts/BoosterNextFY-Bold.woff2) format("woff2"),
+    url(/assets/fonts/BoosterNextFY-Bold.woff) format("woff");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
 }
-@font-face{
-	font-family:BoosterNextFY;
-	src:url(/assets/fonts/BoosterNextFY-Light.woff2) format("woff2"),url(/assets/fonts/BoosterNextFY-Light.woff) format("woff");
-	font-weight:300;
-	font-style:normal;
-	font-display:swap;
+
+@font-face {
+  font-family: BoosterNextFY;
+  src: url(/assets/fonts/BoosterNextFY-Light.woff2) format("woff2"),
+    url(/assets/fonts/BoosterNextFY-Light.woff) format("woff");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
 }
-@font-face{
-	font-family:BoosterNextFY;
-	src:url(/assets/fonts/BoosterNextFY-Black.woff2) format("woff2"),url(/assets/fonts/BoosterNextFY-Black.woff) format("woff");
-	font-weight:900;
-	font-style:normal;
-	font-display:swap;
+
+@font-face {
+  font-family: BoosterNextFY;
+  src: url(/assets/fonts/BoosterNextFY-Black.woff2) format("woff2"),
+    url(/assets/fonts/BoosterNextFY-Black.woff) format("woff");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
 }
-@font-face{
-	font-family:BoosterNextFY;
-	src:url(/assets/fonts/BoosterNextFY-Thin.woff2) format("woff2"),url(/assets/fonts/BoosterNextFY-Thin.woff) format("woff");
-	font-weight:100;
-	font-style:normal;
-	font-display:swap;
+
+@font-face {
+  font-family: BoosterNextFY;
+  src: url(/assets/fonts/BoosterNextFY-Thin.woff2) format("woff2"),
+    url(/assets/fonts/BoosterNextFY-Thin.woff) format("woff");
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
 }
-@font-face{
-	font-family:BoosterNextFY;
-	src:url(/assets/fonts/BoosterNextFY-Regular.woff2) format("woff2"),url(/assets/fonts/BoosterNextFY-Regular.woff) format("woff");
-	font-weight:400;
-	font-style:normal;
-	font-display:swap;
+
+@font-face {
+  font-family: BoosterNextFY;
+  src: url(/assets/fonts/BoosterNextFY-Regular.woff2) format("woff2"),
+    url(/assets/fonts/BoosterNextFY-Regular.woff) format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
 }
-@font-face{
-	font-family:BoosterNextFY;
-	src:url(/assets/fonts/BoosterNextFY-Medium.woff2) format("woff2"),url(/assets/fonts/BoosterNextFY-Medium.woff) format("woff");
-	font-weight:500;
-	font-style:normal;
-	font-display:swap
+
+@font-face {
+  font-family: BoosterNextFY;
+  src: url(/assets/fonts/BoosterNextFY-Medium.woff2) format("woff2"),
+    url(/assets/fonts/BoosterNextFY-Medium.woff) format("woff");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
 }
-body,html{
-	background:var(--backgroundColor);
-	margin:0;
-	color:var(--alternateTextColor);
-	font-family:var(--textFont);
-	}
-body{
-	font-size:var(--rootFontSize);
+
+body,
+html {
+  background: var(--backgroundColor);
+  margin: 0;
+  color: var(--alternateTextColor);
+  font-family: var(--textFont);
 }
-*{
-	box-sizing:border-box;
+
+body {
+  font-size: var(--rootFontSize);
 }
- .logo {
-   margin: 1.5625rem 0 3.125rem;
-   cursor: pointer;
- }
+
+* {
+  box-sizing: border-box;
+}
+
+.logo {
+  margin: 1.5625rem 0 3.125rem;
+  cursor: pointer;
+}

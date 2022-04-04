@@ -6,15 +6,15 @@ import { ArticleComponent } from './content/article/article.component';
 import { TableComponent } from './content/table/table.component';
 
 const routes: Routes = [
-  {path: '', component: HomeComponent},
-  {path: 'home', component: HomeComponent, redirectTo: ''},
-  {path: 'table', component: TableComponent},
-  {path: 'article', component: ArticleComponent},
-  {path: 'article/:id', component: ArticleComponent}
+  { path: '', component: HomeComponent },
+  { path: 'home', component: HomeComponent, redirectTo: '' },
+  { path: 'table', component: TableComponent },
+  { path: 'article', component: ArticleComponent },
+  { path: 'article/:id', component: ArticleComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

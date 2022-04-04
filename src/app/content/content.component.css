@@ -1,10 +1,11 @@
-.inline, .page {
-    position: relative;
-    justify-content: center;
-    align-items: center;
+.inline,
+.page {
+  position: relative;
+  justify-content: center;
+  align-items: center;
 }
 .inline {
-    max-width: var(--maxWidth);
-    min-height: 100%;
-    margin: 0 auto;
+  max-width: var(--maxWidth);
+  min-height: 100%;
+  margin: 0 auto;
 }

@@ -1,112 +1,234 @@
 <h1>NIMEKIRI</h1>
 <table>
-  <caption style="caption-side:top">
-    <div class="btn-group" role="group" style="width:100%; line-height:1em;" *ngIf="total">
-      <button class="btn btn-warning" role="button" style="padding-right:5px" (click)="switchTotals(108)">Ridu:
-        {{total}}
+  <caption style="caption-side: top">
+    <div
+      class="btn-group"
+      role="group"
+      style="width: 100%; line-height: 1em"
+      *ngIf="total"
+    >
+      <button
+        class="btn btn-warning"
+        role="button"
+        style="padding-right: 5px"
+        (click)="switchTotals(108)"
+      >
+        Ridu:
+        {{ total }}
       </button>
       <button class="btn btn-light" role="button" (click)="switchTotals(108)">
-        Klikka muutmiseks. Ridu on vaikimisi nii palju, kui neid andmeallikal parasjagu on (nt 500), kuid võib ka olla
-        108 (nagu ülesandepüstituses).
+        Klikka muutmiseks. Ridu on vaikimisi nii palju, kui neid andmeallikal
+        parasjagu on (nt 500), kuid võib ka olla 108 (nagu ülesandepüstituses).
       </button>
     </div>
   </caption>
   <thead *ngIf="sortToggleName as st">
-  <tr>
-    <ng-container *ngIf="st.firstname || 'sort' as tgFirstName">
-      <th #th role="button" [id]="this.sortableField.firstname"
-          (click)="setSortToggleNameAndSort('firstname',tgFirstName)">Eesnimi
-        <ngx-fa [name]="tgFirstName" size="lg"></ngx-fa>
-      </th>
-    </ng-container>
+    <tr>
+      <ng-container *ngIf="st.firstname || 'sort' as tgFirstName">
+        <th
+          #th
+          role="button"
+          [id]="this.sortableField.firstname"
+          (click)="setSortToggleNameAndSort('firstname', tgFirstName)"
+        >
+          Eesnimi
+          <ngx-fa [name]="tgFirstName" size="lg"></ngx-fa>
+        </th>
+      </ng-container>
 
-    <ng-container *ngIf="st.surname || 'sort' as tgSurName">
-      <th #th role="button" [id]="this.sortableField.surname" (click)="setSortToggleNameAndSort('surname',tgSurName)">
-        Perekonnanimi
-        <ngx-fa [name]="tgSurName" size="lg"></ngx-fa>
-      </th>
-    </ng-container>
+      <ng-container *ngIf="st.surname || 'sort' as tgSurName">
+        <th
+          #th
+          role="button"
+          [id]="this.sortableField.surname"
+          (click)="setSortToggleNameAndSort('surname', tgSurName)"
+        >
+          Perekonnanimi
+          <ngx-fa [name]="tgSurName" size="lg"></ngx-fa>
+        </th>
+      </ng-container>
 
-    <ng-container *ngIf="st.sex || 'sort' as tgSex">
-      <th #th role="button" [id]="this.sortableField.sex" (click)="setSortToggleNameAndSort('sex',tgSex)">Sugu
-        <ngx-fa [name]="tgSex" size="lg"></ngx-fa>
-      </th>
-    </ng-container>
+      <ng-container *ngIf="st.sex || 'sort' as tgSex">
+        <th
+          #th
+          role="button"
+          [id]="this.sortableField.sex"
+          (click)="setSortToggleNameAndSort('sex', tgSex)"
+        >
+          Sugu
+          <ngx-fa [name]="tgSex" size="lg"></ngx-fa>
+        </th>
+      </ng-container>
 
-    <ng-container *ngIf="st.sortCode || 'sort' as tgBorn">
-      <th #th role="button" [id]="this.sortableField.birthdate" (click)="setSortToggleNameAndSort('birthdate',tgBorn)">
-        Sünnipäev
-        <ngx-fa [name]="tgBorn" size="lg"></ngx-fa>
-      </th>
-    </ng-container>
-    <th #th role="button" id="phone">Telefon</th>
-  </tr>
+      <ng-container *ngIf="st.sortCode || 'sort' as tgBorn">
+        <th
+          #th
+          role="button"
+          [id]="this.sortableField.birthdate"
+          (click)="setSortToggleNameAndSort('birthdate', tgBorn)"
+        >
+          Sünnipäev
+          <ngx-fa [name]="tgBorn" size="lg"></ngx-fa>
+        </th>
+      </ng-container>
+      <th #th role="button" id="phone">Telefon</th>
+    </tr>
   </thead>
   <tfoot>
-  <tr>
-    <td colspan="5" class="buttonWrapper">
-      <div role="group" class="btn-transparent btn-xxl nav nav-fill" aria-label="Navigate" style="width:100%">
-        <button class="btn btn-light btn-xxl"
-                (click)="setSliceInimesed(inimesteLoend, 0, limit);start=0;next=limit;pageIndex=0">1
-        </button>
-        <button class="btn btn-dark btn-xxl"
-                (click)="pageIndex=(pageIndex-1<0?pageTotal+(pageIndex-1):pageIndex-1);setSliceInimesed(inimesteLoend, offsets[pageIndex].value, offsets[pageIndex].next);start=offsets[pageIndex].value;next=offsets[pageIndex].next;"
-                aria-label="Navigate to previous page" variant="transparent" class="disabled button__transparent">
-          <ngx-fa name="chevron-left" size="xxl">
-            <i aria-hidden="true" class="fa fa-chevron-left fa-2x"></i>
-          </ngx-fa>
-        </button>
-        <ng-container *ngFor="let o of offsets;">
-          <ng-container *ngIf='nupula(o)'>
-            <button #pg [id]="o.pageIndex" class="nav-item btn btn-xxl"
-                    [class]="o.pageIndex == pageIndex.toString() || !pageIndex && o.pageIndex == '0' ? {'text-warning':true, 'fw-bold':true, 'fs-4':true, 'text-light':false} : {'btn-warning':false, 'fw-bold':false, 'fs-4':false, 'text-light':true}"
-                    (click)="setSliceInimesed(inimesteLoend, o.value, o.next);
-      start=o.value;next=o.next;pageIndex=o.pageIndex">
-              {{o.page}}
-            </button>
+    <tr>
+      <td colspan="5" class="buttonWrapper">
+        <div
+          role="group"
+          class="btn-transparent btn-xxl nav nav-fill"
+          aria-label="Navigate"
+          style="width: 100%"
+        >
+          <button
+            class="btn btn-light btn-xxl"
+            (click)="
+              setSliceInimesed(inimesteLoend, 0, limit);
+              start = 0;
+              next = limit;
+              pageIndex = 0
+            "
+          >
+            1
+          </button>
+          <button
+            class="btn btn-dark btn-xxl"
+            (click)="
+              pageIndex =
+                pageIndex - 1 < 0 ? pageTotal + (pageIndex - 1) : pageIndex - 1;
+              setSliceInimesed(
+                inimesteLoend,
+                offsets[pageIndex].value,
+                offsets[pageIndex].next
+              );
+              start = offsets[pageIndex].value;
+              next = offsets[pageIndex].next
+            "
+            aria-label="Navigate to previous page"
+            variant="transparent"
+            class="disabled button__transparent"
+          >
+            <ngx-fa name="chevron-left" size="xxl">
+              <i aria-hidden="true" class="fa fa-chevron-left fa-2x"></i>
+            </ngx-fa>
+          </button>
+          <ng-container *ngFor="let o of offsets">
+            <ng-container *ngIf="nupula(o)">
+              <button
+                #pg
+                [id]="o.pageIndex"
+                class="nav-item btn btn-xxl"
+                [class]="
+                  o.pageIndex == pageIndex.toString() ||
+                  (!pageIndex && o.pageIndex == '0')
+                    ? {
+                        'text-warning': true,
+                        'fw-bold': true,
+                        'fs-4': true,
+                        'text-light': false
+                      }
+                    : {
+                        'btn-warning': false,
+                        'fw-bold': false,
+                        'fs-4': false,
+                        'text-light': true
+                      }
+                "
+                (click)="
+                  setSliceInimesed(inimesteLoend, o.value, o.next);
+                  start = o.value;
+                  next = o.next;
+                  pageIndex = o.pageIndex
+                "
+              >
+                {{ o.page }}
+              </button>
+            </ng-container>
           </ng-container>
-        </ng-container>
-        <button class="btn btn-dark btn-xxl"
-                (click)="pageIndex=(pageIndex+1>=pageTotal?pageIndex+1-pageTotal:pageIndex+1);setSliceInimesed(inimesteLoend,  offsets[pageIndex].value, offsets[pageIndex].next);start=offsets[pageIndex].value;next=offsets[pageIndex].next;"
-                aria-label="Navigate to next page" variant="transparent" class="button__transparent">
-          <ngx-fa name="chevron-right" size="fa-3x">
-            <i aria-hidden="true" class="fa fa-chevron-right fa-3x"></i>
-          </ngx-fa>
-        </button>
-        <button class="btn btn-light btn-xxl"
-                (click)="setSliceInimesed(inimesteLoend, offsets[lastPageIndex].value, offsets[lastPageIndex].next);start=offsets[lastPageIndex].value;next=offsets[lastPageIndex].next;pageIndex=lastPageIndex">
-          {{pageTotal}}
-        </button>
-      </div>
-    </td>
-  </tr>
+          <button
+            class="btn btn-dark btn-xxl"
+            (click)="
+              pageIndex =
+                pageIndex + 1 >= pageTotal
+                  ? pageIndex + 1 - pageTotal
+                  : pageIndex + 1;
+              setSliceInimesed(
+                inimesteLoend,
+                offsets[pageIndex].value,
+                offsets[pageIndex].next
+              );
+              start = offsets[pageIndex].value;
+              next = offsets[pageIndex].next
+            "
+            aria-label="Navigate to next page"
+            variant="transparent"
+            class="button__transparent"
+          >
+            <ngx-fa name="chevron-right" size="fa-3x">
+              <i aria-hidden="true" class="fa fa-chevron-right fa-3x"></i>
+            </ngx-fa>
+          </button>
+          <button
+            class="btn btn-light btn-xxl"
+            (click)="
+              setSliceInimesed(
+                inimesteLoend,
+                offsets[lastPageIndex].value,
+                offsets[lastPageIndex].next
+              );
+              start = offsets[lastPageIndex].value;
+              next = offsets[lastPageIndex].next;
+              pageIndex = lastPageIndex
+            "
+          >
+            {{ pageTotal }}
+          </button>
+        </div>
+      </td>
+    </tr>
   </tfoot>
   <tbody *ngIf="sliceInimesed?.length">
-  <ng-container *ngFor="let d of sliceInimesed">
-    <tr #tr role="button" class="clickable" (click)="tr.classList.toggle('active'); activeTr(d.id)">
-      <td class="name firstname">{{d.firstname}}</td>
-      <td class="name surname">{{d.surname}}</td>
-      <td class="sex">{{d.sex}}</td>
-      <td class="date">{{d.synna}}</td>
-      <td class="phone">{{d.phone}}</td>
-    </tr>
-    <ng-container *ngIf="isActive == d.id">
-      <tr id="{{d.id}}_intro">
-        <td colspan="5" display="inline-block">
-          <div class="intro intro-img"><img src="{{d.image.small}}" width="100%"></div>
-          <div class="intro intro-text">
-            <div class="intro-content"><p outerHTML="{{d.intro}}"></p></div>
-            <p style="display: block;"><a [routerLink]="['/article',d.id]">Loe edasi</a></p>
-          </div>
-        </td>
+    <ng-container *ngFor="let d of sliceInimesed">
+      <tr
+        #tr
+        role="button"
+        class="clickable"
+        (click)="tr.classList.toggle('active'); activeTr(d.id)"
+      >
+        <td class="name firstname">{{ d.firstname }}</td>
+        <td class="name surname">{{ d.surname }}</td>
+        <td class="sex">{{ d.sex }}</td>
+        <td class="date">{{ d.synna }}</td>
+        <td class="phone">{{ d.phone }}</td>
       </tr>
+      <ng-container *ngIf="isActive == d.id">
+        <tr id="{{ d.id }}_intro">
+          <td colspan="5" display="inline-block">
+            <div class="intro intro-img">
+              <img src="{{ d.image.small }}" width="100%" />
+            </div>
+            <div class="intro intro-text">
+              <div class="intro-content"><p outerHTML="{{ d.intro }}"></p></div>
+              <p style="display: block">
+                <a [routerLink]="['/article', d.id]">Loe edasi</a>
+              </p>
+            </div>
+          </td>
+        </tr>
+      </ng-container>
     </ng-container>
-  </ng-container>
   </tbody>
   <tbody *ngIf="!sliceInimesed?.length">
-  <tr>
-    <td colspan="2" style="text-align:center;"><img src="/assets/imgs/loader.svg" width="100"></td>
-    <td colspan="3" style="text-align:center;"><h2>Laeb andmeid, palun oota</h2></td>
-  </tr>
+    <tr>
+      <td colspan="2" style="text-align: center">
+        <img src="/assets/imgs/loader.svg" width="100" />
+      </td>
+      <td colspan="3" style="text-align: center">
+        <h2>Laeb andmeid, palun oota</h2>
+      </td>
+    </tr>
   </tbody>
 </table>

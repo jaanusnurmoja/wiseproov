@@ -1,9 +1,15 @@
 <header>
-  <button #menu aria-label="Toggle menu" class="clickable"
-          (click)="menu.classList.toggle('active');setMenuToggle(getMenuToggleName())">
+  <button
+    #menu
+    aria-label="Toggle menu"
+    class="clickable"
+    (click)="
+      menu.classList.toggle('active'); setMenuToggle(getMenuToggleName())
+    "
+  >
     <ngx-fa [name]="getMenuToggleName()" size="lg">
       <i aria-hidden="true" class="fa fa-bars fa-lg"></i>
     </ngx-fa>
   </button>
-  <img routerlink="/" class="logo" src="/assets/imgs/nurmoja_net_ee.png">
+  <img routerlink="/" class="logo" src="/assets/imgs/nurmoja_net_ee.png" />
 </header>

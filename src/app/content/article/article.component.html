@@ -1,31 +1,36 @@
-<ng-container *ngIf="article else loading">
-  <h1>{{article.title}}</h1>
-  <h2>{{article.firstname}} {{article.surname}}</h2>
-  <div tabindex="0" class="intro" innerHTML="{{article.intro}}">
-    {{article.intro}}
+<ng-container *ngIf="article; else loading">
+  <h1>{{ article.title }}</h1>
+  <h2>{{ article.firstname }} {{ article.surname }}</h2>
+  <div tabindex="0" class="intro" innerHTML="{{ article.intro }}">
+    {{ article.intro }}
   </div>
-  <img [src]="article.image.medium"
-       [alt]="article.image.alt"
-       [title]="article.image.title">
-  <div class="image__title">{{article.image.title}}</div>
+  <img
+    [src]="article.image.medium"
+    [alt]="article.image.alt"
+    [title]="article.image.title"
+  />
+  <div class="image__title">{{ article.image.title }}</div>
   <div class="image__fade">
-    <div class="image__fade__img"
-         style="background-image: url(&quot;{{article.image.medium}}&quot;);"></div>
+    <div
+      class="image__fade__img"
+      style="background-image: url('{{ article.image.medium }}');"
+    ></div>
   </div>
-  <div class="image__face"
-       style="background-image: url(&quot;{{article.image.medium}}&quot;);"></div>
-  <div tabindex="0" innerHTML="{{article.body}}">{{article.body}}</div>
+  <div
+    class="image__face"
+    style="background-image: url('{{ article.image.medium }}');"
+  ></div>
+  <div tabindex="0" innerHTML="{{ article.body }}">{{ article.body }}</div>
   <mat-chip-list aria-label="Final chipset">
-  <ng-container *ngFor="let t of article.tags">
-  <mat-chip class="btn btn-success">{{t}}</mat-chip>
-  </ng-container>
-  <mat-chip class="btn btn-warning">{{article.boolean}}</mat-chip>
+    <ng-container *ngFor="let t of article.tags">
+      <mat-chip class="btn btn-success">{{ t }}</mat-chip>
+    </ng-container>
+    <mat-chip class="btn btn-warning">{{ article.boolean }}</mat-chip>
   </mat-chip-list>
-
 </ng-container>
 <ng-template #loading>
   <h2>Oota, laeb artiklit</h2>
-  <div style="text-align: center;margin-top:100px">
-  <img src="/assets/imgs/loader.svg" width="100">
+  <div style="text-align: center; margin-top: 100px">
+    <img src="/assets/imgs/loader.svg" width="100" />
   </div>
 </ng-template>

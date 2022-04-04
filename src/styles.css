@@ -1,32 +1,51 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-
-h1,h2,h3,h4,h5 {
-    font-family: var(--font)
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-h1:first-child,h2:first-child,h3:first-child,h4:first-child,h5:first-child {
-    margin-top: 0
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: var(--font);
 }
 
-h1:last-child,h2:last-child,h3:last-child,h4:last-child,h5:last-child {
-    margin-bottom: 0
+h1:first-child,
+h2:first-child,
+h3:first-child,
+h4:first-child,
+h5:first-child {
+  margin-top: 0;
+}
+
+h1:last-child,
+h2:last-child,
+h3:last-child,
+h4:last-child,
+h5:last-child {
+  margin-bottom: 0;
 }
 
 h1 {
-    font-size: 2.8125rem
+  font-size: 2.8125rem;
 }
 
-h1,h2 {
-    text-align: center;
-    text-transform: uppercase
+h1,
+h2 {
+  text-align: center;
+  text-transform: uppercase;
 }
 
 h2 {
-    font-size: 2rem;
-    margin: 3.75rem 0 0
+  font-size: 2rem;
+  margin: 3.75rem 0 0;
 }
 
 /*
@@ -36,106 +55,110 @@ p {
 */
 
 p a {
-    color: var(--highlightColor)
+  color: var(--highlightColor);
 }
 
 @media screen and (max-width: 960px) {
-    h1 {
-        font-size:2.25rem
-    }
+  h1 {
+    font-size: 2.25rem;
+  }
 
-    h2 {
-        font-size: 1.5rem
-    }
+  h2 {
+    font-size: 1.5rem;
+  }
 }
 
-body,html {
-    background: var(--backgroundColor);
-    margin: 0;
-    color: var(--alternateTextColor);
-    font-family: var(--textFont)
+body,
+html {
+  background: var(--backgroundColor);
+  margin: 0;
+  color: var(--alternateTextColor);
+  font-family: var(--textFont);
 }
 
 body {
-    font-size: var(--rootFontSize)
+  font-size: var(--rootFontSize);
 }
 
 * {
-    box-sizing: border-box
+  box-sizing: border-box;
 }
 
 .inline {
-    max-width: var(--maxWidth);
-    min-height: 100%;
-    margin: 0 auto
+  max-width: var(--maxWidth);
+  min-height: 100%;
+  margin: 0 auto;
 }
 
-.inline,.page {
-    position: relative
+.inline,
+.page {
+  position: relative;
 }
 
 .page {
-    background-image: url(/assets/imgs/bg-deco-left.svg),url(/assets/imgs/bg-deco-right.svg);
-    background-repeat: no-repeat;
-    background-position: var(--menuWidth) bottom,100% 0;
-    background-size: 150px,250px;
-    background-attachment: fixed;
-    display: block;
-    margin-left: var(--menuWidth);
-    height: 100vh;
-    overflow: auto;
-    padding: 5rem 2.5rem
+  background-image: url(/assets/imgs/bg-deco-left.svg),
+    url(/assets/imgs/bg-deco-right.svg);
+  background-repeat: no-repeat;
+  background-position: var(--menuWidth) bottom, 100% 0;
+  background-size: 150px, 250px;
+  background-attachment: fixed;
+  display: block;
+  margin-left: var(--menuWidth);
+  height: 100vh;
+  overflow: auto;
+  padding: 5rem 2.5rem;
 }
 
 @media screen and (max-width: 960px) {
-    .page {
-        margin-left:0;
-        background-position: 0 bottom,100% 0;
-        padding-left: 1.5rem;
-        padding-right: 1.5rem;
-        padding-top: 7.5rem
-    }
+  .page {
+    margin-left: 0;
+    background-position: 0 bottom, 100% 0;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    padding-top: 7.5rem;
+  }
 }
 
 .text-center {
-    text-align: center
+  text-align: center;
 }
 
 :root {
-    --font: BoosterNextFY;
-    --textFont: "Open Sans";
-    --rootFontSize: 16px;
-    --highlightColor: #ffc107;
-    --textColor: #3a3d57;
-    --alternateTextColor: #fff;
-    --secondaryColor: #ff57a2;
-    --backgroundColor: #3a3d57;
-    --linkHoverColor: #d99f03;
-    --blockColor: #efefef;
-    --menuWidth: 220px;
-    --maxWidth: 1000px
+  --font: BoosterNextFY;
+  --textFont: "Open Sans";
+  --rootFontSize: 16px;
+  --highlightColor: #ffc107;
+  --textColor: #3a3d57;
+  --alternateTextColor: #fff;
+  --secondaryColor: #ff57a2;
+  --backgroundColor: #3a3d57;
+  --linkHoverColor: #d99f03;
+  --blockColor: #efefef;
+  --menuWidth: 220px;
+  --maxWidth: 1000px;
 }
 
 .text-highlight {
-    color: var(--highlightColor)
+  color: var(--highlightColor);
 }
 
 .sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0,0,0,0);
-    border: 0
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
 }
 
-.sr-only-focusable:active,.sr-only-focusable:focus {
-    position: static;
-    width: auto;
-    height: auto;
-    margin: 0;
-    overflow: visible;
-    clip: auto
+.sr-only-focusable:active,
+.sr-only-focusable:focus {
+  position: static;
+  width: auto;
+  height: auto;
+  margin: 0;
+  overflow: visible;
+  clip: auto;
 }

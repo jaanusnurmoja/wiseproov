@@ -13,16 +13,16 @@ export class ArticleComponent implements OnInit {
   loendiStat: any;
   total: any;
 
-  constructor(private _Activatedroute:ActivatedRoute) { }
+  constructor(private _Activatedroute: ActivatedRoute) { }
 
   ngOnInit(): void {
-   this.getTotal();
+    this.getTotal();
   }
 
   getTotal(): void {
     fetch('https://midaiganes.irw.ee/api/list?limit=0')
-    .then(r => r.json())
-    .then(t => this.setTotal(t));
+      .then(r => r.json())
+      .then(t => this.setTotal(t));
   }
 
   setTotal(t): void {
@@ -32,27 +32,27 @@ export class ArticleComponent implements OnInit {
 
   loendJaStatOrig(total): void {
     fetch('https://midaiganes.irw.ee/api/list?limit=' + total)
-    .then(response => response.json())
-    .then(j => this.setArticleId(j));
+      .then(response => response.json())
+      .then(j => this.setArticleId(j));
   }
 
   setArticleId(j): void {
     this.loendiStat = j.stats;
     let ids = j.list.map(t => t.id);
-    let random = ids[Math.floor(Math.random()*ids.length)];
+    let random = ids[Math.floor(Math.random() * ids.length)];
     this._Activatedroute.paramMap.subscribe(params => {
-        this.id = params.get('id') || random;
-        this.getArticleFromUrl(this.id);
+      this.id = params.get('id') || random;
+      this.getArticleFromUrl(this.id);
     });
   }
 
   getArticleFromUrl(id): void {
     fetch('https://midaiganes.irw.ee/api/list/' + id)
-    .then(response => response.json())
-    .then(a => this.setArticle(a));
+      .then(response => response.json())
+      .then(a => this.setArticle(a));
   }
 
-  setArticle(a) : void {
+  setArticle(a): void {
     this.article = a;
   }
 }
