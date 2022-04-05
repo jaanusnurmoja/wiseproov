@@ -36,12 +36,14 @@ Erinevus võrreldes originaaliga - pilt ei ole ruuduks kärbitud, teksti väljav
 ![image](https://user-images.githubusercontent.com/1138055/150771560-951931c1-24aa-4daf-a075-80b3705227c8.png)
 Hetkel on siin vähem kujundamistöid tehtud kui originaalis (pean silmas just pilte). Teisalt on artikli algusesse toodud ka inimese nimi kinnitamaks visuaalselt, et näeme just selle isiku kirjet, kelle oma me lingi teel avasime. Kolmandaks on all nn chip'ide hulka kaasatud ka tõeväärtuseväli, mis puudus originaalis. Värv ilmub siis, kui kursor on chipi kohal. 
 
-Kui URLis on lihtsalt /article, siis avaneb seesama "valveartikkel", mille link oli ära toodud ülesande juures. Lisades lõppu id, näiteks /article/1617a8fc , avaneb selle id-ga isiku kirje. 
+Kui URLis on lihtsalt /article, siis avaneb üks juhuslikult valitud artikkel, seda erinevalt ülesandelehest, kus avanes üks kindel "valveartikkel".
 
 ### Ootavad lahendust
 
+Kattuvad funktsioonid komponentides table ja artice: kaht fetchi, millega saadakse kätte kõigepealt olemasolevate kirjete arv ja seejärel kõik kirjed, kasutab table ning mõlemaad on dubleeritud article komponendis. Ideaalis peaksid funktsioonid ja nende abil saadud andmed olema taaskasutatavad. Ühisteenuse abil on see õnnestunud vaid ühe funktsiooni puhul, mis puudutab komponente menu ja header
+
 ![image](https://user-images.githubusercontent.com/1138055/150772956-3d0ab113-522e-403e-acf6-a2574037ff0a.png)
-Menüü sulgub kitsama vaate juures, kuid praegu menüünupp veel menüüd ei ava. **EDIT: Lahendatud!** 
+Menüü sulgub kitsama vaate juures, kuid menüünupp veel menüüd ei ava. **EDIT: Lahendatud!** 
 
 ![150774201-0368a8be-d4be-4a4b-bdaa-df43adc32d48](https://user-images.githubusercontent.com/1138055/151221291-b08b9af7-ca3e-4718-9ff8-b6f46be19398.png)
 Navigeerimisnuppe võiks sellise lahenduse juures olla rohkem kui üks. **EDIT: Lahendatud, vt kõige alumist navigatsiooniriba pilti** Alternatiiv oleks muidugi näidata kõiki nuppe. 
