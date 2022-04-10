@@ -24,11 +24,13 @@ export class TableComponent implements OnInit {
   sortSynna: number = 0;
   sortableField: any;
   sortToggleName: any;
+  noConnection: any;
 
   constructor() {}
 
   ngOnInit(): void {
     this.getTotal();
+    this.waitForConnection();
     this.setSortableFieldNames();
     this.setSortToggleNameAndSort('default', 'sort');
   }
@@ -264,6 +266,13 @@ export class TableComponent implements OnInit {
           'fs-4': false,
           'text-light': true,
         };
+  }
+
+  waitForConnection() {
+    setTimeout(() => {
+      this.noConnection =
+        'Näib, et meil on probleeme andmete kättesaamisega andmeallikast. Palume võimalusel anda sellest teada haldurile haldur@seeleht.ee';
+    }, 5000);
   }
 
   reset(): void {
