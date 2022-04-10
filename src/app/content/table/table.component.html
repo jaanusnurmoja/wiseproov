@@ -171,8 +171,10 @@
         <img src="/assets/imgs/loader.svg" width="100" />
       </td>
       <td colspan="3" style="text-align: center">
-        <h2>Laeb andmeid, palun oota</h2>
-        <p class="text-highlight" *ngIf="noConnection">{{ noConnection }}</p>
+        <h2>Laeb andmeid, palun oodake</h2>
+        <p class="text-highlight" *ngIf="common.noConnection">
+          {{ common.noConnection }}
+        </p>
       </td>
     </tr>
   </tbody>

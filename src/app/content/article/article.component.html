@@ -29,7 +29,10 @@
   </mat-chip-list>
 </ng-container>
 <ng-template #loading>
-  <h2>Oota, laeb artiklit</h2>
+  <h2>Laeb artiklit, palun oodake</h2>
+  <p class="text-warning" *ngIf="common.noConnection">
+    {{ common.noConnection }}
+  </p>
   <div style="text-align: center; margin-top: 100px">
     <img src="/assets/imgs/loader.svg" width="100" />
   </div>

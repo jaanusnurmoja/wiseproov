@@ -5,6 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class CommonService {
   menuToggleName: any;
+  noConnection: any;
 
   constructor() {}
 
@@ -14,5 +15,12 @@ export class CommonService {
     if (word == 'bars') tn = 'times';
     if (word == 'times') tn = 'bars';
     this.menuToggleName = tn;
+  }
+
+  waitForConnection() {
+    setTimeout(() => {
+      this.noConnection =
+        'Näib, et meil on probleeme andmete kättesaamisega andmeallikast. Palume võimalusel anda sellest teada haldurile haldur@seeleht.ee';
+    }, 5000);
   }
 }
