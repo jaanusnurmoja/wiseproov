@@ -32,7 +32,7 @@ export class TableComponent implements OnInit {
   ngOnInit(): void {
     this.getTotal();
     this.common.waitForConnection();
-    this.setSortableFieldNames();
+    //this.setSortableFieldNames();
     this.setSortToggleNameAndSort('default', 'sort');
   }
 
@@ -102,7 +102,6 @@ export class TableComponent implements OnInit {
     let loend = this.inimesteLoend;
     let sortNames: any = {};
     let sortedData: any[] = [];
-    let finalSort: any[] = [];
     let asc: boolean = false;
     let desc: boolean = false;
     let none: boolean = false;
@@ -124,31 +123,16 @@ export class TableComponent implements OnInit {
     }
 
     if (sortableField == 'default') sortNames.default = 'sort';
-    if (sortableField == 'firstname') {
-      sortNames.firstname = sn;
+    console.log(sortableField);
+
+    if (sortableField.length > 0 && sortableField != 'default') {
+      sortNames[sortableField] = sn;
       sortedData = loend.sort((a, b) =>
-        this.sortCompare(a.firstname, b.firstname, asc, desc)
+        this.sortCompare(a[sortableField], b[sortableField], asc, desc)
       );
     }
-    if (sortableField == 'surname') {
-      sortNames.surname = sn;
-      sortedData = loend.sort((a, b) =>
-        this.sortCompare(a.surname, b.surname, asc, desc)
-      );
-    }
-    if (sortableField == 'sex') {
-      sortNames.sex = sn;
-      sortedData = loend.sort((a, b) =>
-        this.sortCompare(a.sex, b.sex, asc, desc)
-      );
-    }
-    if (sortableField == 'birthdate') {
-      sortNames.sortCode = sn;
-      sortedData = loend.sort((a, b) =>
-        this.sortCompare(a.sortCode, b.sortCode, asc, desc)
-      );
-    }
-    if (sortableField == '') {
+
+    if (sortableField == '' || sortableField == 'default') {
       sortNames.default = 'sort';
       sortNames.firstname = 'sort';
       sortNames.surname = 'sort';
@@ -214,7 +198,7 @@ export class TableComponent implements OnInit {
     return paev + '.' + kuu + '.' + aasta;
   }
 
-  setSortableFieldNames(): void {
+  /*   setSortableFieldNames(): void {
     const field: any = {};
     field.firstname = 'firstname';
     field.surname = 'surname';
@@ -224,7 +208,7 @@ export class TableComponent implements OnInit {
     field.sortCode = 'sort_code';
     this.sortableField = field;
   }
-
+ */
   sortCompare(prop1, prop2, asc, desc): number {
     if (asc == true) {
       return prop1 < prop2 ? -1 : 1;
