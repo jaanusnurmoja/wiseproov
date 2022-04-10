@@ -69,8 +69,7 @@ export class TableComponent implements OnInit {
       let sugu: string = '';
       sugu = inimene.sex == 'm' ? 'Mees' : 'Naine';
       inimene.sex = sugu;
-      this.personalIdToFormattedDate(inimene.personal_code);
-      inimene.synna = this.synna;
+      inimene.synna = this.personalIdToFormattedDate(inimene.personal_code);
       inimene.sortCode = this.sortSynna;
       let phoneNumber = parsePhoneNumber(inimene.phone);
       inimene.phone = phoneNumber.formatInternational();
@@ -205,14 +204,14 @@ export class TableComponent implements OnInit {
     this.isActive = this.isActive == id ? false : id;
   }
 
-  personalIdToFormattedDate(personalId): void {
+  personalIdToFormattedDate(personalId): string {
     let idAsString = String(personalId);
     let sajandiArv = ['5', '6'].includes(idAsString[0]) ? '20' : '19';
     let aasta = sajandiArv + idAsString.substring(1, 3);
     this.sortSynna = Number(aasta + idAsString.substring(3));
     let kuu = idAsString.substring(3, 5);
     let paev = idAsString.substring(5, 7);
-    this.synna = paev + '.' + kuu + '.' + aasta;
+    return paev + '.' + kuu + '.' + aasta;
   }
 
   setSortableFieldNames(): void {
