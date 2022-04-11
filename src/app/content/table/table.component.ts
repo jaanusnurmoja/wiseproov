@@ -185,7 +185,7 @@ export class TableComponent implements OnInit {
   }
 
   activeTr(id): void {
-    this.isActive = this.isActive == id ? false : id;
+    this.isActive = this.isActive === id ? false : id;
   }
 
   personalIdToFormattedDate(personalId): string {
