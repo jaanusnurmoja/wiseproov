@@ -22,10 +22,8 @@ export class TableComponent implements OnInit {
   pageIndex: number = 0;
   isActive: any = false;
   synna: string = '';
-  sortSynna: number = 0;
   sortableField: any;
   sortToggleName: any;
-  //noConnection: any;
 
   constructor(public common: CommonService) {}
 
@@ -66,11 +64,15 @@ export class TableComponent implements OnInit {
     for (let inimene of inimesteLoend) {
       inimene.firstname = inimene.firstname.replace('\u200e', '');
       inimene.surname = inimene.surname.replace('\u200e', '');
+      
       let sugu: string = '';
       sugu = inimene.sex == 'm' ? 'Mees' : 'Naine';
       inimene.sex = sugu;
-      inimene.synna = this.personalIdToFormattedDate(inimene.personal_code);
-      inimene.sortCode = this.sortSynna;
+      
+      let sortedOrFormattedSynna = this.personalIdToSortableAndFormattedDate(inimene.personal_code);
+      inimene.synna = sortedOrFormattedSynna.formatted;
+      inimene.sortSynna = sortedOrFormattedSynna.sortable;
+      
       let phoneNumber = parsePhoneNumber(inimene.phone);
       inimene.phone = phoneNumber.formatInternational();
     }
@@ -123,6 +125,7 @@ export class TableComponent implements OnInit {
     }
 
     if (sortableField == 'default') sortNames.default = 'sort';
+    if (sortableField == 'birthdate') sortableField = 'sortSynna';
     console.log(sortableField);
 
     if (sortableField.length > 0 && sortableField != 'default') {
@@ -137,7 +140,7 @@ export class TableComponent implements OnInit {
       sortNames.firstname = 'sort';
       sortNames.surname = 'sort';
       sortNames.sex = 'sort';
-      sortNames.sortCode = 'sort';
+      sortNames.sortSynna = 'sort';
     }
 
     this.sortToggleName = sortNames;
@@ -188,27 +191,19 @@ export class TableComponent implements OnInit {
     this.isActive = this.isActive === id ? false : id;
   }
 
-  personalIdToFormattedDate(personalId): string {
+  personalIdToSortableAndFormattedDate(personalId): any {
+    let synna: any = {};
     let idAsString = String(personalId);
     let sajandiArv = ['5', '6'].includes(idAsString[0]) ? '20' : '19';
     let aasta = sajandiArv + idAsString.substring(1, 3);
-    this.sortSynna = Number(aasta + idAsString.substring(3));
+    //this.sortSynna = Number(aasta + idAsString.substring(3));
+    synna.sortable = Number(aasta + idAsString.substring(3));
     let kuu = idAsString.substring(3, 5);
     let paev = idAsString.substring(5, 7);
-    return paev + '.' + kuu + '.' + aasta;
+    synna.formatted = paev + '.' + kuu + '.' + aasta;
+    return synna;
   }
 
-  /*   setSortableFieldNames(): void {
-    const field: any = {};
-    field.firstname = 'firstname';
-    field.surname = 'surname';
-    field.sex = 'sex';
-    field.birthdate = 'birthdate';
-    field.personal_code = 'personal_code';
-    field.sortCode = 'sort_code';
-    this.sortableField = field;
-  }
- */
   sortCompare(prop1, prop2, asc, desc): number {
     if (asc == true) {
       return prop1 < prop2 ? -1 : 1;
