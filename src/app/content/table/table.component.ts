@@ -24,15 +24,18 @@ export class TableComponent implements OnInit {
   synna: string = '';
   sortableField: any;
   sortToggleName: any;
+  debug:any;
 
   constructor(public common: CommonService) {}
 
   ngOnInit(): void {
+    this.common.getTotalOfAllItems();
     this.getTotal();
     this.common.waitForConnection();
     //this.setSortableFieldNames();
     this.setSortToggleNameAndSort('default', 'sort');
   }
+
 
   getTotal(): void {
     fetch('https://midaiganes.irw.ee/api/list?limit=0')
@@ -43,6 +46,12 @@ export class TableComponent implements OnInit {
   setTotal(t): void {
     this.total = typeof t === 'number' ? t : t.stats.total;
     this.loendJaStatOrig(this.total);
+    this.oneRow(this.common.totalAvailable);
+  }
+
+  oneRow(n) {
+    this.common.getData('list', n)
+    .subscribe((d:any) => this.debug = d.list[0].surname);
   }
 
   switchTotals(altTotal): any {
