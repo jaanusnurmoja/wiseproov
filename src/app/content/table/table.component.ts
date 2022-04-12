@@ -37,21 +37,25 @@ export class TableComponent implements OnInit {
   }
 
 
-  getTotal(): void {
-    fetch('https://midaiganes.irw.ee/api/list?limit=0')
-      .then((r) => r.json())
-      .then((t) => this.setTotal(t));
+   getTotal(): void {
+   // fetch('https://midaiganes.irw.ee/api/list?limit=0')
+     // .then((r) => r.json())
+     // .then((t) => this.setTotal(t));
+      this.setTotal(this.common.totalAvailable);
+  }
+ 
+   setTotal(t?:any): void {
+    this.total = t ? t : this.common.totalAvailable;
+    //this.loendJaStatOrig(this.total);
+    this.listRows();
   }
 
-  setTotal(t): void {
-    this.total = typeof t === 'number' ? t : t.stats.total;
-    this.loendJaStatOrig(this.total);
-    this.oneRow();
-  }
-
-  oneRow() {
+  listRows() {
     this.common.getData('list')
-    .subscribe((d:any) => this.debug = d.list[0].surname);
+    .subscribe((d:any) => {
+      this.debug = d.list[0].surname;
+      this.loendJaStatParsed(d);
+    });
   }
 
   switchTotals(altTotal): any {
@@ -60,12 +64,12 @@ export class TableComponent implements OnInit {
     return altTotal;
   }
 
-  loendJaStatOrig(total, param = ''): void {
+/*   loendJaStatOrig(total, param = ''): void {
     fetch('https://midaiganes.irw.ee/api/list?limit=' + total + param)
       .then((response) => response.json())
       .then((j) => this.loendJaStatParsed(j));
   }
-
+ */
   loendJaStatParsed(j): void {
     let loendiStat = j.stats;
     let inimesteLoend = j.list;
@@ -257,6 +261,7 @@ export class TableComponent implements OnInit {
   }
 
   reset(): void {
-    this.loendJaStatOrig(this.total);
+    //this.loendJaStatOrig(this.total);
+    this.listRows();
   }
 }
