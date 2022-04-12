@@ -46,11 +46,11 @@ export class TableComponent implements OnInit {
   setTotal(t): void {
     this.total = typeof t === 'number' ? t : t.stats.total;
     this.loendJaStatOrig(this.total);
-    this.oneRow(this.common.totalAvailable);
+    this.oneRow();
   }
 
-  oneRow(n) {
-    this.common.getData('list', n)
+  oneRow() {
+    this.common.getData('list')
     .subscribe((d:any) => this.debug = d.list[0].surname);
   }
 
