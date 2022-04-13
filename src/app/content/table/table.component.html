@@ -1,26 +1,8 @@
-<h1>NIMEKIRI {{common.totalAvailable}} {{debug}}</h1>
+<h1>NIMEKIRI</h1>
 <table>
-  <caption style="caption-side: top">
-    <div
-      class="btn-group"
-      role="group"
-      style="width: 100%; line-height: 1em"
-      *ngIf="total"
-    >
-      <button
-        class="btn btn-warning"
-        role="button"
-        style="padding-right: 5px"
-        (click)="switchTotals(108)"
-      >
-        Ridu:
-        {{ total }}
-      </button>
-      <button class="btn btn-light" role="button" (click)="switchTotals(108)">
-        Klikka muutmiseks. Ridu on vaikimisi nii palju, kui neid andmeallikal
-        parasjagu on (nt 500), kuid võib ka olla 108 (nagu ülesandepüstituses).
-      </button>
-    </div>
+<caption style="caption-side: top">
+  <p class="text-highlight">DEBUG - kokku {{common.totalAvailable}}, peab olema vähemalt 500. Esimene on {{debug || 'laadimata'}}, peab olema Lembit-Vambo Fjodorov</p>
+  
   </caption>
   <thead *ngIf="sortToggleName as st">
     <tr>

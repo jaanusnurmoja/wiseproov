@@ -11,7 +11,6 @@ export class TableComponent implements OnInit {
   loendiStat: any;
   inimesteLoend: any;
   sliceInimesed: any;
-  total: number = 0;
   limit: number = 10;
   start = 0;
   next = this.limit;
@@ -26,50 +25,24 @@ export class TableComponent implements OnInit {
   sortToggleName: any;
   debug:any;
 
-  constructor(public common: CommonService) {}
+  constructor(public common: CommonService) {
+}
 
   ngOnInit(): void {
-    this.common.getTotalOfAllItems();
-    this.getTotal();
+    this.listRows();
     this.common.waitForConnection();
-    //this.setSortableFieldNames();
     this.setSortToggleNameAndSort('default', 'sort');
   }
 
-
-   getTotal(): void {
-   // fetch('https://midaiganes.irw.ee/api/list?limit=0')
-     // .then((r) => r.json())
-     // .then((t) => this.setTotal(t));
-      this.setTotal(this.common.totalAvailable);
-  }
- 
-   setTotal(t?:any): void {
-    this.total = t ? t : this.common.totalAvailable;
-    //this.loendJaStatOrig(this.total);
-    this.listRows();
-  }
-
   listRows() {
-    this.common.getData('list')
+    if (this.common.getData())
+    this.common.getData()
     .subscribe((d:any) => {
-      this.debug = d.list[0].surname;
+      this.debug = d.list[0].firstname + ' ' + d.list[0].surname;
       this.loendJaStatParsed(d);
     });
   }
 
-  switchTotals(altTotal): any {
-    let total = this.total != altTotal ? altTotal : this.loendiStat.total;
-    this.setTotal(total);
-    return altTotal;
-  }
-
-/*   loendJaStatOrig(total, param = ''): void {
-    fetch('https://midaiganes.irw.ee/api/list?limit=' + total + param)
-      .then((response) => response.json())
-      .then((j) => this.loendJaStatParsed(j));
-  }
- */
   loendJaStatParsed(j): void {
     let loendiStat = j.stats;
     let inimesteLoend = j.list;
@@ -93,7 +66,7 @@ export class TableComponent implements OnInit {
     this.loendiStat = loendiStat;
     this.inimesteLoend = inimesteLoend;
     this.setSliceInimesed(inimesteLoend, this.start, this.next);
-    let pages = Math.ceil(this.total / this.limit);
+    let pages = Math.ceil(this.common.totalAvailable / this.limit);
     this.pageTotal = pages;
     this.lastPageIndex = this.pageTotal - 1;
 
@@ -137,7 +110,6 @@ export class TableComponent implements OnInit {
       none = true;
     }
 
-    if (sortableField == 'default') sortNames.default = 'sort';
     if (sortableField == 'birthdate') sortableField = 'sortSynna';
     console.log(sortableField);
 
@@ -209,7 +181,6 @@ export class TableComponent implements OnInit {
     let idAsString = String(personalId);
     let sajandiArv = ['5', '6'].includes(idAsString[0]) ? '20' : '19';
     let aasta = sajandiArv + idAsString.substring(1, 3);
-    //this.sortSynna = Number(aasta + idAsString.substring(3));
     synna.sortable = Number(aasta + idAsString.substring(3));
     let kuu = idAsString.substring(3, 5);
     let paev = idAsString.substring(5, 7);
@@ -233,7 +204,7 @@ export class TableComponent implements OnInit {
     } else if (this.pageIndex >= this.pageTotal - 5) {
       return (
         offset.value >= (this.pageTotal - 10) * this.limit &&
-        offset.value < this.total
+        offset.value < this.common.totalAvailable
       );
     } else {
       return (
@@ -261,7 +232,6 @@ export class TableComponent implements OnInit {
   }
 
   reset(): void {
-    //this.loendJaStatOrig(this.total);
     this.listRows();
   }
 }

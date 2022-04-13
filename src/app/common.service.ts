@@ -15,15 +15,18 @@ export class CommonService {
   menuToggleName: any;
   noConnection: any;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    this.getTotalOfAllItems();
+  }
 
   getTotalOfAllItems() {
+    if (this.totalAvailable === 0){
     this.http.get(this.totalAvailableItemsUrl)
     .subscribe((data:any) => this.totalAvailable = data.stats.total);
   }
+}
 
-  getData(what, code?:any) {
-    // now returns an Observable of Config
+  getData(what = 'list', code?:any) {
     let dataUrl: string = '';
     if (what === 'article') {
       dataUrl = this.articleBaseUrl + code;
@@ -44,7 +47,9 @@ export class CommonService {
   }
 
   waitForConnection() {
-    setTimeout(() => {
+    let timeOut: any;
+    clearTimeout(timeOut);
+    timeOut = setTimeout(() => {
       this.noConnection =
         'Näib, et meil on probleeme andmete kättesaamisega andmeallikast. Palume võimalusel anda sellest teada haldurile haldur@seeleht.ee';
     }, 5000);
