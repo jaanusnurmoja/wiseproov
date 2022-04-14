@@ -6,7 +6,6 @@ import { HttpClient } from '@angular/common/http';
 })
 export class CommonService {
   baseUrl: string = 'https://midaiganes.irw.ee/api/list/';
-  articleBaseUrl: string = this.baseUrl;
   listBaseUrl: string = this.baseUrl + '?limit=';
   totalAvailable: number = 500;
   menuToggleName: any;
@@ -20,7 +19,7 @@ export class CommonService {
     this.noConnection = null;
     let dataUrl: string = '';
     if (what === 'article') {
-      dataUrl = this.articleBaseUrl + code;
+      dataUrl = this.baseUrl + code;
     }
     if (what === 'list') {
       dataUrl = this.listBaseUrl + (code ? code : this.totalAvailable);

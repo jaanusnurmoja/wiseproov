@@ -29,7 +29,6 @@ export class TableComponent implements OnInit {
 
   ngOnInit(): void {
     this.listRows();
-    //this.common.waitForConnection();
     this.setSortToggleNameAndSort('default', 'sort');
   }
 

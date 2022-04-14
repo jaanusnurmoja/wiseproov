@@ -19,7 +19,6 @@ export class ArticleComponent implements OnInit {
 
   ngOnInit(): void {
     this.getDataForArticleId();
-    //this.common.waitForConnection();
   }
 
   getDataForArticleId(): void {
