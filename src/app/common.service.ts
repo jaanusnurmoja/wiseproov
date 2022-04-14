@@ -11,20 +11,13 @@ export class CommonService {
   totalAvailableItemsUrl = this.baseUrl + 'list?limit=0';
   articleBaseUrl: string = this.baseUrl + 'article/';
   listBaseUrl: string = this.baseUrl + 'list?limit=';
-  totalAvailable: number = 0;
+  totalAvailable: number = 500;
   menuToggleName: any;
   noConnection: any;
 
   constructor(private http: HttpClient) {
-    this.getTotalOfAllItems();
+    this.getData();
   }
-
-  getTotalOfAllItems() {
-    if (this.totalAvailable === 0){
-    this.http.get(this.totalAvailableItemsUrl)
-    .subscribe((data:any) => this.totalAvailable = data.stats.total);
-  }
-}
 
   getData(what = 'list', code?:any) {
     let dataUrl: string = '';
