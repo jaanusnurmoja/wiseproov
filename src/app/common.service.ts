@@ -18,6 +18,7 @@ export class CommonService {
   }
 
   waitForConnection() {
+    if (this.noConnection) this.noConnection = null;
     setTimeout(() => {
       this.noConnection =
         'Näib, et meil on probleeme andmete kättesaamisega andmeallikast. Palume võimalusel anda sellest teada haldurile haldur@seeleht.ee';

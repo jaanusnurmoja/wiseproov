@@ -20,7 +20,6 @@ export class ArticleComponent implements OnInit {
 
   ngOnInit(): void {
     this.getTotal();
-    this.common.waitForConnection();
   }
 
   getTotal(): void {
@@ -35,6 +34,8 @@ export class ArticleComponent implements OnInit {
   }
 
   loendJaStatOrig(total): void {
+    this.common.noConnection = null;
+    this.common.waitForConnection();
     fetch('https://midaiganes.irw.ee/api/list?limit=' + total)
       .then((response) => response.json())
       .then((j) => this.setArticleId(j));

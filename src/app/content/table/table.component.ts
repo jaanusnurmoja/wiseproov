@@ -29,8 +29,6 @@ export class TableComponent implements OnInit {
 
   ngOnInit(): void {
     this.getTotal();
-    this.common.waitForConnection();
-    //this.setSortableFieldNames();
     this.setSortToggleNameAndSort('default', 'sort');
   }
 
@@ -52,6 +50,8 @@ export class TableComponent implements OnInit {
   }
 
   loendJaStatOrig(total, param = ''): void {
+    this.common.noConnection = null;
+    this.common.waitForConnection();
     fetch('https://midaiganes.irw.ee/api/list?limit=' + total + param)
       .then((response) => response.json())
       .then((j) => this.loendJaStatParsed(j));
