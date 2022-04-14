@@ -17,6 +17,7 @@ export class CommonService {
   }
 
   getData(what = 'list', code?:any) {
+    this.noConnection = null;
     let dataUrl: string = '';
     if (what === 'article') {
       dataUrl = this.articleBaseUrl + code;

@@ -48,7 +48,7 @@ export class ArticleComponent implements OnInit {
   }
 
   setArticle(a): void {
-    if (a.id != '6d3845d2') //debugi tarvis, isik: Tiina Kruglov
+    //if (a.id != '6d3845d2') //debugi tarvis, isik: Tiina Kruglov
     this.article = a;
   }
 }
