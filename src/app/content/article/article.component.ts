@@ -10,7 +10,6 @@ import { CommonService } from '../../common.service';
 export class ArticleComponent implements OnInit {
   article: any;
   id: any;
-  loendiStat: any;
   total: any;
 
   constructor(
@@ -19,30 +18,20 @@ export class ArticleComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.getTotal();
-    this.common.waitForConnection();
+    this.getDataForArticleId();
+    //this.common.waitForConnection();
   }
 
-  getTotal(): void {
-    fetch('https://midaiganes.irw.ee/api/list?limit=0')
-      .then((r) => r.json())
-      .then((t) => this.setTotal(t));
+  getDataForArticleId(): void {
+    if (this.common.getData())
+    this.common.getData()
+    .subscribe((d:any) => {
+      this.setArticleId(d);
+    });
   }
 
-  setTotal(t): void {
-    this.total = typeof t === 'number' ? t : t.stats.total;
-    this.loendJaStatOrig(this.total);
-  }
-
-  loendJaStatOrig(total): void {
-    fetch('https://midaiganes.irw.ee/api/list?limit=' + total)
-      .then((response) => response.json())
-      .then((j) => this.setArticleId(j));
-  }
-
-  setArticleId(j): void {
-    this.loendiStat = j.stats;
-    let ids = j.list.map((t) => t.id);
+  setArticleId(d): void {
+    let ids = d.list.map((t) => t.id);
     let random = ids[Math.floor(Math.random() * ids.length)];
     this._Activatedroute.paramMap.subscribe((params) => {
       this.id = params.get('id') || random;
@@ -51,12 +40,15 @@ export class ArticleComponent implements OnInit {
   }
 
   getArticleFromUrl(id): void {
-    fetch('https://midaiganes.irw.ee/api/list/' + id)
-      .then((response) => response.json())
-      .then((a) => this.setArticle(a));
+    this.common.waitForConnection();
+    this.common.getData('article', id)
+    .subscribe((a:any) => {
+      this.setArticle(a);
+    });
   }
 
   setArticle(a): void {
+    if (a.id != '6d3845d2') //debugi tarvis, isik: Tiina Kruglov
     this.article = a;
   }
 }

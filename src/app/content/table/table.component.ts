@@ -8,7 +8,6 @@ import { CommonService } from '../../common.service';
   styleUrls: ['./table.component.css'],
 })
 export class TableComponent implements OnInit {
-  loendiStat: any;
   inimesteLoend: any;
   sliceInimesed: any;
   limit: number = 10;
@@ -30,12 +29,13 @@ export class TableComponent implements OnInit {
 
   ngOnInit(): void {
     this.listRows();
-    this.common.waitForConnection();
+    //this.common.waitForConnection();
     this.setSortToggleNameAndSort('default', 'sort');
   }
 
   listRows() {
-    if (this.common.getData())
+    this.common.waitForConnection();
+    //if (!this.common.getData()) //for debug
     this.common.getData()
     .subscribe((d:any) => {
       this.debug = d.list[0].firstname + ' ' + d.list[0].surname;
@@ -43,9 +43,8 @@ export class TableComponent implements OnInit {
     });
   }
 
-  loendJaStatParsed(j): void {
-    let loendiStat = j.stats;
-    let inimesteLoend = j.list;
+  loendJaStatParsed(d): void {
+    let inimesteLoend = d.list;
 
     for (let inimene of inimesteLoend) {
       inimene.firstname = inimene.firstname.replace('\u200e', '');
@@ -63,7 +62,6 @@ export class TableComponent implements OnInit {
       inimene.phone = phoneNumber.formatInternational();
     }
 
-    this.loendiStat = loendiStat;
     this.inimesteLoend = inimesteLoend;
     this.setSliceInimesed(inimesteLoend, this.start, this.next);
     let pages = Math.ceil(this.common.totalAvailable / this.limit);

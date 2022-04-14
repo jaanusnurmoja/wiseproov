@@ -7,10 +7,9 @@ import { catchError, retry } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class CommonService {
-  baseUrl: string = 'https://midaiganes.irw.ee/api/';
-  totalAvailableItemsUrl = this.baseUrl + 'list?limit=0';
-  articleBaseUrl: string = this.baseUrl + 'article/';
-  listBaseUrl: string = this.baseUrl + 'list?limit=';
+  baseUrl: string = 'https://midaiganes.irw.ee/api/list/';
+  articleBaseUrl: string = this.baseUrl;
+  listBaseUrl: string = this.baseUrl + '?limit=';
   totalAvailable: number = 500;
   menuToggleName: any;
   noConnection: any;
