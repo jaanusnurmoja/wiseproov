@@ -10,17 +10,20 @@ table td {
   padding: 0.625rem 1rem;
   border-bottom: #fff 0.0625rem solid;
   width: 20%;
+  white-space: nowrap;
+
 }
 table th {
   background: var(--bs-yellow);
   color: var(--bs-dark);
   text-align: left;
-  white-space: nowrap;
 }
-
 table {
-  width: 100%;
-}
+  border-collapse: collapse;
+  min-width: 100%;
+  font-size: 1rem;
+  table-layout: fixed;
+  }
 
 table tr:nth-child(even) td {
   background: rgba(255, 255, 255, 0.1);
@@ -30,7 +33,6 @@ table tr:nth-child(even) td {
   float: left;
   display: inline;
   padding: 0.5em;
-  items-align: center;
 }
 .intro-img {
   width: 40%;
@@ -45,4 +47,9 @@ p {
   max-height: 170px;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+.table-wrapper {
+  display: block;
+  overflow: auto;
+  width: 100%;
 }
